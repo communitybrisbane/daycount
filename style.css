@@ -10,6 +10,93 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Header with moving film background */
+header {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0B69A3 0%, #299DBC 50%, #005A9C 100%);
+}
+
+/* Film strip background container */
+.film-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    animation: filmMove 30s linear infinite;
+    z-index: 1;
+}
+
+/* Individual film frames */
+.film-frame {
+    flex-shrink: 0;
+    width: 300px;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    border-right: 3px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.film-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(11, 105, 163, 0.3) 0%, 
+        rgba(41, 157, 188, 0.2) 50%, 
+        rgba(0, 90, 156, 0.3) 100%);
+    pointer-events: none;
+}
+
+/* Film perforations */
+.film-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(255, 255, 255, 0.1) 8px,
+            rgba(255, 255, 255, 0.1) 10px
+        );
+    pointer-events: none;
+}
+
+/* Film movement animation */
+@keyframes filmMove {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-900px);
+    }
+}
+
+/* Header content overlay */
+header > div {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    margin: 0 20px;
+    padding: 20px;
+}
+
 /* Timeline item pseudo-element for the dot */
 .timeline-item::before {
     content: '';
