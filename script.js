@@ -193,48 +193,153 @@ function renderContent() {
         const timelineData = [
             {
                 number: "01",
-                icon: "🔍",
+                icon: "🎓",
                 title: "序章：冒険の始まり",
                 subtitle: "PROLOGUE",
                 description: "大学院を休学し、オーストラリアへの準備期間。セブ島での語学留学を通じて、海外生活の基礎を築きました。",
                 color: "from-cyan-400 to-blue-500",
-                image: "images/santa 169.jpg"
+                image: "images/santa 169.jpg",
+                details: "自分の人生を見つめなおし、「このままでは後悔する」という強い思いが込み上げてきました。周りの期待や安定した未来よりも、自分が本当に心惹かれる道を選びたい。そう決意し、休学届を提出。ここから、誰にも縛られない、自分だけの物語を描くための365日が始まりました。"
             },
             {
                 number: "02", 
-                icon: "💼",
-                title: "孤独とサバイバル",
-                subtitle: "SOLITUDE",
-                description: "ブリスベン到着後のサバイバル生活。生活インフラの整備と友達作りへの挑戦が始まりました。",
+                icon: "✈️",
+                title: "最初の挑戦、セブ島へ",
+                subtitle: "CEBU",
+                description: "オーストラリアへの助走期間。英語と、海外で生きるということに初めて触れた日々。",
                 color: "from-red-400 to-pink-500",
-                image: "images/bench.JPEG"
+                image: "images/beach.JPEG",
+                details: "いきなりオーストラリアへ飛び込むのは不安だったので、まずはフィリピン・セブ島で3ヶ月の語学留学をすることに。ここで初めて海外で生活し、多様な文化に触れ、英語でコミュニケーションをとる楽しさと難しさを学びました。"
             },
             {
                 number: "03",
-                icon: "📊",
-                title: "創造の瞬間",
-                subtitle: "CREATION", 
-                description: "community_brisbaneの誕生。おにぎりイベントを通じて、多くの仲間との出会いが生まれました。",
+                icon: "🎫",
+                title: "片道航空券と、セブ島で得た小さな自信",
+                subtitle: "ARRIVAL",
+                description: "オーストラリアへ。人生の本当の冒険が、ついに幕を開ける。",
                 color: "from-orange-400 to-yellow-500",
-                image: "images/fusya7.JPEG"
+                image: "images/bench.JPEG",
+                details: "セブ島での経験で少しだけ自信をつけ、片道航空券を握りしめてブリスベンへ。しかし、空港に降り立った瞬間、本当の挑戦はここからだと実感しました。期待と不安が入り混じる中、僕のゲームが本格的にスタートしました。"
             },
             {
                 number: "04",
-                icon: "📱",
-                title: "絆の構築",
-                subtitle: "BONDS",
-                description: "相棒との出会い。クリスマス会やBBQを通じて、深い絆が育まれました。",
+                icon: "🏠",
+                title: "最初の試練：生活インフラを整えよ！",
+                subtitle: "SURVIVAL",
+                description: "家なし、仕事なし、友達なし。毎日がクエストだった、サバイバル生活のリアル。",
                 color: "from-red-400 to-pink-500",
-                image: "images/koala.jpg"
+                image: "images/castle.JPEG",
+                details: "最初の1週間は本当に過酷でした。住む家を探し、銀行口座を開設し、携帯電話を契約する。一つ一つのタスクが大きな壁のように感じられました。言葉の壁にもぶつかりながら、必死で生活の基盤を築いていきました。"
             },
             {
                 number: "05",
-                icon: "💬",
-                title: "約束の未来",
-                subtitle: "PROMISE",
-                description: "365日目の約束。新たな相棒との出会いと、新たな挑戦への決意。",
+                icon: "🗣️",
+                title: "「友達の作り方、教えてください！」",
+                subtitle: "LONELINESS",
+                description: "孤独に耐えきれず、なにかしたい。それが、すべての始まりだった。",
                 color: "from-cyan-400 to-blue-500",
-                image: "images/urulu.jpg"
+                image: "images/fusya7.JPEG",
+                details: "生活は安定してきたものの、独りの日々は想像以上に辛いものでした。このままではいけない。どうすれば友達ができるんだろう？その純粋な問いと行動したいという衝動が、後のコミュニティ設立へと繋がる最初のきっかけでした。"
+            },
+            {
+                number: "06",
+                icon: "🎉",
+                title: "8月25日、community_brisbane爆誕",
+                subtitle: "BIRTH",
+                description: "「ないなら、作ればいい」― 友達づくりの「機会」を創るという、人生で一番面白いゲームの始まり。",
+                color: "from-green-400 to-teal-500",
+                image: "images/simonada.JPEG",
+                details: "待っていても何も変わらない。それなら、自分が人々が集まれる「機会」や「場所」を作ればいいんだ。最初は数人しか集まらなかったけれど、これが僕らのコミュニティの始まりでした。"
+            },
+            {
+                number: "07",
+                icon: "🧱",
+                title: "最初の仲間と、最初の壁：存続の危機",
+                subtitle: "CRISIS",
+                description: "ルームメイトたちが手伝ってくれたが、彼らが去り、運営の危機。",
+                color: "from-red-400 to-pink-500",
+                image: "images/takusenaka.jpg",
+                details: "当初はルームメイトたちが運営を手伝ってくれましたが、彼らもそれぞれブリスベンを離れていきました。気づけば運営は僕一人に。「もっとやりたかった」という去った仲間の言葉を背負いながらたった一人でコミュニティを続けることに。"
+            },
+            {
+                number: "08",
+                icon: "🍙",
+                title: "10月17日、方向転換のおにぎりイベント",
+                subtitle: "TURNING POINT",
+                description: "おにぎりイベントで、新たな協力者と出会う。",
+                color: "from-orange-400 to-yellow-500",
+                image: "images/takuroadtrip.jpg",
+                details: "このままではダメだ。何か新しい流れを作らなければ。そう考えて企画したのが、日本文化の象徴でもある「おにぎり」をみんなで作るイベントでした。このイベントが大当たりし、多くの人が集まってくれただけでなく、運営に協力してくれる新しい仲間との出会いにも繋がりました。"
+            },
+            {
+                number: "09",
+                icon: "🤝",
+                title: "11月2日、相棒との出会い",
+                subtitle: "PARTNERSHIP",
+                description: "この仲間と何かを成し遂げたいという、新しい夢ができた。",
+                color: "from-purple-400 to-indigo-500",
+                image: "images/koala.jpg",
+                details: "運営に悩んでいた時期に、僕の情熱に共感し、「一緒にやりたい」と言ってくれる最高の相棒に出会いました。彼との出会いがコミュニティをさらに加速させ、一人では見えなかった景色を見せてくれました。この仲間となら、もっと大きなことができる。そう確信しました。"
+            },
+            {
+                number: "10",
+                icon: "🎄",
+                title: "コミュニティの熱狂：クリスマス会と忘年会BBQ",
+                subtitle: "EXCITEMENT",
+                description: "仲間たちと作り上げた熱狂の渦。僕らの物語は、これからもっと面白くなる。",
+                color: "from-red-400 to-pink-500",
+                image: "images/bbqniku.jpg",
+                details: "相棒や運営メンバーと共に企画したクリスマス会には50人以上が集まり、大成功を収めました。年末のBBQも大盛況。コミュニティが確かに人々の「居場所」になっていることを実感し、感動で胸が熱くなりました。この熱狂は、僕らの努力が形になった証でした。"
+            },
+            {
+                number: "11",
+                icon: "🗓️",
+                title: "年末の決断：もう一年、ここにいる",
+                subtitle: "DECISION",
+                description: "仲間と見つけた目標を前に、休学をもう一年延長することを決めた日。",
+                color: "from-cyan-400 to-blue-500",
+                image: "images/urulu.jpg",
+                details: "当初の計画では、1年で日本に帰国する予定でした。しかし、このコミュニティと仲間たちとの未来を考えると、どうしても離れがたい。悩んだ末に、大学や家族に連絡し、もう1年休学を延長させてもらうことに。自分の気持ちに正直に、大きな決断を下しました。"
+            },
+            {
+                number: "12",
+                icon: "🚗",
+                title: "4月30日、8週間の旅へ",
+                subtitle: "JOURNEY",
+                description: "シドニー、ウルル、ダーウィン、ケアンズ… 大自然の中で自問自答を繰り返す。",
+                color: "from-green-400 to-teal-500",
+                image: "images/takubluemountain.JPG",
+                details: "車でオーストラリア大陸を巡る8週間の旅へ。壮大な自然の中に身を置くと、自分の悩みがちっぽけに思えました。これからの人生で何を成し遂げたいのか、自分はどこへ向かうべきなのか。自分自身と深く向き合う、貴重な時間となりました。"
+            },
+            {
+                number: "13",
+                icon: "🗺️",
+                title: "旅の終わりに見つけた「次の一歩」",
+                subtitle: "DISCOVERY",
+                description: "旅は、僕に次の目的を与えてくれた。",
+                color: "from-orange-400 to-yellow-500",
+                image: "images/takusmile.JPG",
+                details: "旅を通して見つけた答えは、シンプルでした。ブリスベンに戻り、あのコミュニティをもっと大きく、もっと素晴らしい場所にしたい。そのために、学生ビザを取得してでも挑戦を続けよう。旅は僕の迷いを断ち切り、進むべき道をはっきりと示してくれました。"
+            },
+            {
+                number: "14",
+                icon: "🚀",
+                title: "新たな相棒と、新たな挑戦へ",
+                subtitle: "NEW BEGINNING",
+                description: "僕の決意に共感し、「一緒にやりたい」と言ってくれる新たな相棒が待っていた。",
+                color: "from-purple-400 to-indigo-500",
+                image: "images/train.JPEG",
+                details: "ブリスベンに戻ると、僕の旅の話とこれからの計画に目を輝かせ、「ぜひ一緒にやらせてほしい」という新しい仲間が現れました。僕の情熱が、また新しい情熱に火をつけた瞬間でした。一人じゃない、僕らの第二章がここから始まります。"
+            },
+            {
+                number: "15",
+                icon: "🏁",
+                title: "ワーホリ最終日の7月31日、「終わり」じゃない、「始まり」だ",
+                subtitle: "PROMISE",
+                description: "1stワーホリ終了。でも、僕の物語はここで終わらない。",
+                color: "from-cyan-400 to-blue-500",
+                image: "images/brisblue.JPEG",
+                details: "ワーキングホリデービザが切れる365日目。しかし、これは決してゴールではありません。翌日からは学生ビザに切り替え、僕はブリスベンに残ります。この街で、仲間たちと共に、僕のゲームのセカンドシーズンが幕を開けるのです。"
             }
         ];
 
@@ -267,18 +372,17 @@ function renderContent() {
                         <div class="w-3 h-3 bg-white rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"></div>
                     </div>
                     
-                    <!-- Image Side -->
+                    <!-- Image Side with Hover Details -->
                     <div class="w-1/2 ${isLeft ? 'pl-8' : 'pr-8'}">
-                        <div class="relative group cursor-pointer" onclick="openTimelineModal(${index})">
+                        <div class="relative group cursor-pointer">
                             <div class="w-full h-48 rounded-lg overflow-hidden shadow-lg">
                                 <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                             </div>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
-                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                    </svg>
+                            <!-- Hover Overlay with Details -->
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-80 transition-all duration-300 rounded-lg flex items-center justify-center p-6">
+                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+                                    <h4 class="text-lg font-bold mb-3">${item.title}</h4>
+                                    <p class="text-sm leading-relaxed">${item.details}</p>
                                 </div>
                             </div>
                         </div>
@@ -442,28 +546,88 @@ function openTimelineModal(index) {
             details: "自分の人生を見つめなおし、「このままでは後悔する」という強い思いが込み上げてきました。周りの期待や安定した未来よりも、自分が本当に心惹かれる道を選びたい。そう決意し、休学届を提出。ここから、誰にも縛られない、自分だけの物語を描くための365日が始まりました。"
         },
         {
-            title: "孤独とサバイバル", 
-            description: "ブリスベン到着後のサバイバル生活。生活インフラの整備と友達作りへの挑戦が始まりました。",
+            title: "最初の挑戦、セブ島へ",
+            description: "オーストラリアへの助走期間。英語と、海外で生きるということに初めて触れた日々。",
+            image: "images/beach.JPEG",
+            details: "いきなりオーストラリアへ飛び込むのは不安だったので、まずはフィリピン・セブ島で3ヶ月の語学留学をすることに。ここで初めて海外で生活し、多様な文化に触れ、英語でコミュニケーションをとる楽しさと難しさを学びました。"
+        },
+        {
+            title: "片道航空券と、セブ島で得た小さな自信",
+            description: "オーストラリアへ。人生の本当の冒険が、ついに幕を開ける。",
             image: "images/bench.JPEG",
+            details: "セブ島での経験で少しだけ自信をつけ、片道航空券を握りしめてブリスベンへ。しかし、空港に降り立った瞬間、本当の挑戦はここからだと実感しました。期待と不安が入り混じる中、僕のゲームが本格的にスタートしました。"
+        },
+        {
+            title: "最初の試練：生活インフラを整えよ！",
+            description: "家なし、仕事なし、友達なし。毎日がクエストだった、サバイバル生活のリアル。",
+            image: "images/castle.JPEG",
             details: "最初の1週間は本当に過酷でした。住む家を探し、銀行口座を開設し、携帯電話を契約する。一つ一つのタスクが大きな壁のように感じられました。言葉の壁にもぶつかりながら、必死で生活の基盤を築いていきました。"
         },
         {
-            title: "創造の瞬間",
-            description: "community_brisbaneの誕生。おにぎりイベントを通じて、多くの仲間との出会いが生まれました。",
-            image: "images/fusya7.JPEG", 
+            title: "「友達の作り方、教えてください！」",
+            description: "孤独に耐えきれず、なにかしたい。それが、すべての始まりだった。",
+            image: "images/fusya7.JPEG",
+            details: "生活は安定してきたものの、独りの日々は想像以上に辛いものでした。このままではいけない。どうすれば友達ができるんだろう？その純粋な問いと行動したいという衝動が、後のコミュニティ設立へと繋がる最初のきっかけでした。"
+        },
+        {
+            title: "8月25日、community_brisbane爆誕",
+            description: "「ないなら、作ればいい」― 友達づくりの「機会」を創るという、人生で一番面白いゲームの始まり。",
+            image: "images/simonada.JPEG",
             details: "待っていても何も変わらない。それなら、自分が人々が集まれる「機会」や「場所」を作ればいいんだ。最初は数人しか集まらなかったけれど、これが僕らのコミュニティの始まりでした。"
         },
         {
-            title: "絆の構築",
-            description: "相棒との出会い。クリスマス会やBBQを通じて、深い絆が育まれました。",
-            image: "images/koala.jpg",
-            details: "運営に悩んでいた時期に、僕の情熱に共感し、「一緒にやりたい」と言ってくれる最高の相棒に出会いました。彼との出会いがコミュニティをさらに加速させ、一人では見えなかった景色を見せてくれました。"
+            title: "最初の仲間と、最初の壁：存続の危機",
+            description: "ルームメイトたちが手伝ってくれたが、彼らが去り、運営の危機。",
+            image: "images/takusenaka.jpg",
+            details: "当初はルームメイトたちが運営を手伝ってくれましたが、彼らもそれぞれブリスベンを離れていきました。気づけば運営は僕一人に。「もっとやりたかった」という去った仲間の言葉を背負いながらたった一人でコミュニティを続けることに。"
         },
         {
-            title: "約束の未来",
-            description: "365日目の約束。新たな相棒との出会いと、新たな挑戦への決意。",
+            title: "10月17日、方向転換のおにぎりイベント",
+            description: "おにぎりイベントで、新たな協力者と出会う。",
+            image: "images/takuroadtrip.jpg",
+            details: "このままではダメだ。何か新しい流れを作らなければ。そう考えて企画したのが、日本文化の象徴でもある「おにぎり」をみんなで作るイベントでした。このイベントが大当たりし、多くの人が集まってくれただけでなく、運営に協力してくれる新しい仲間との出会いにも繋がりました。"
+        },
+        {
+            title: "11月2日、相棒との出会い",
+            description: "この仲間と何かを成し遂げたいという、新しい夢ができた。",
+            image: "images/koala.jpg",
+            details: "運営に悩んでいた時期に、僕の情熱に共感し、「一緒にやりたい」と言ってくれる最高の相棒に出会いました。彼との出会いがコミュニティをさらに加速させ、一人では見えなかった景色を見せてくれました。この仲間となら、もっと大きなことができる。そう確信しました。"
+        },
+        {
+            title: "コミュニティの熱狂：クリスマス会と忘年会BBQ",
+            description: "仲間たちと作り上げた熱狂の渦。僕らの物語は、これからもっと面白くなる。",
+            image: "images/bbqniku.jpg",
+            details: "相棒や運営メンバーと共に企画したクリスマス会には50人以上が集まり、大成功を収めました。年末のBBQも大盛況。コミュニティが確かに人々の「居場所」になっていることを実感し、感動で胸が熱くなりました。この熱狂は、僕らの努力が形になった証でした。"
+        },
+        {
+            title: "年末の決断：もう一年、ここにいる",
+            description: "仲間と見つけた目標を前に、休学をもう一年延長することを決めた日。",
             image: "images/urulu.jpg",
-            details: "ブリスベンに戻ると、僕の旅の話とこれからの計画に目を輝かせ、「ぜひ一緒にやらせてほしい」という新しい仲間が現れました。僕の情熱が、また新しい情熱に火をつけた瞬間でした。"
+            details: "当初の計画では、1年で日本に帰国する予定でした。しかし、このコミュニティと仲間たちとの未来を考えると、どうしても離れがたい。悩んだ末に、大学や家族に連絡し、もう1年休学を延長させてもらうことに。自分の気持ちに正直に、大きな決断を下しました。"
+        },
+        {
+            title: "4月30日、8週間の旅へ",
+            description: "シドニー、ウルル、ダーウィン、ケアンズ… 大自然の中で自問自答を繰り返す。",
+            image: "images/takubluemountain.JPG",
+            details: "車でオーストラリア大陸を巡る8週間の旅へ。壮大な自然の中に身を置くと、自分の悩みがちっぽけに思えました。これからの人生で何を成し遂げたいのか、自分はどこへ向かうべきなのか。自分自身と深く向き合う、貴重な時間となりました。"
+        },
+        {
+            title: "旅の終わりに見つけた「次の一歩」",
+            description: "旅は、僕に次の目的を与えてくれた。",
+            image: "images/takusmile.JPG",
+            details: "旅を通して見つけた答えは、シンプルでした。ブリスベンに戻り、あのコミュニティをもっと大きく、もっと素晴らしい場所にしたい。そのために、学生ビザを取得してでも挑戦を続けよう。旅は僕の迷いを断ち切り、進むべき道をはっきりと示してくれました。"
+        },
+        {
+            title: "新たな相棒と、新たな挑戦へ",
+            description: "僕の決意に共感し、「一緒にやりたい」と言ってくれる新たな相棒が待っていた。",
+            image: "images/train.JPEG",
+            details: "ブリスベンに戻ると、僕の旅の話とこれからの計画に目を輝かせ、「ぜひ一緒にやらせてほしい」という新しい仲間が現れました。僕の情熱が、また新しい情熱に火をつけた瞬間でした。一人じゃない、僕らの第二章がここから始まります。"
+        },
+        {
+            title: "ワーホリ最終日の7月31日、「終わり」じゃない、「始まり」だ",
+            description: "1stワーホリ終了。でも、僕の物語はここで終わらない。",
+            image: "images/brisblue.JPEG",
+            details: "ワーキングホリデービザが切れる365日目。しかし、これは決してゴールではありません。翌日からは学生ビザに切り替え、僕はブリスベンに残ります。この街で、仲間たちと共に、僕のゲームのセカンドシーズンが幕を開けるのです。"
         }
     ];
     
