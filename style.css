@@ -534,59 +534,99 @@ html {
     transform: translateX(4px);
 }
 
-/* Chapter-specific background images */
-.timeline-chapter:nth-child(1) {
-    background-image: url('images/beach.JPEG');
-    background-size: cover;
-    background-position: center;
-}
-
-.timeline-chapter:nth-child(2) {
-    background-image: url('images/bench.JPEG');
-    background-size: cover;
-    background-position: center;
-}
-
-.timeline-chapter:nth-child(3) {
-    background-image: url('images/castle.JPEG');
-    background-size: cover;
-    background-position: center;
-}
-
-.timeline-chapter:nth-child(4) {
-    background-image: url('images/fusya7.JPEG');
-    background-size: cover;
-    background-position: center;
-}
-
-.timeline-chapter:nth-child(5) {
-    background-image: url('images/simonada.JPEG');
-    background-size: cover;
-    background-position: center;
-}
-
-.timeline-chapter:nth-child(6) {
-    background-image: url('images/urulu.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-/* Text overlay for hover effect */
-.timeline-chapter::after {
+/* Chapter-specific hover images */
+.timeline-chapter:nth-child(1)::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background-image: url('images/beach.JPEG');
+    background-size: cover;
+    background-position: center;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 1;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/bench.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(3)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/castle.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(4)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/fusya7.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(5)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/simonada.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(6)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/urulu.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
 }
 
 .timeline-chapter:hover::after {
-    opacity: 1;
+    opacity: 0.1;
 }
 
 /* Responsive adjustments for timeline summary */
@@ -641,228 +681,4 @@ html {
 
 .intro-content {
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-} 
-
-/* Introduction Section - New Two-Column Layout */
-.semi-circle-container {
-    position: relative;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.semi-circle-menu {
-    position: relative;
-    width: 300px;
-    height: 150px;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.chapter-button {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #005A9C, #F47C20);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    font-size: 14px;
-    box-shadow: 0 4px 15px rgba(0, 90, 156, 0.3);
-    transform-origin: center;
-}
-
-.chapter-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 90, 156, 0.4);
-}
-
-.chapter-button.active {
-    background: linear-gradient(135deg, #F47C20, #005A9C);
-    transform: scale(1.15);
-    box-shadow: 0 8px 25px rgba(247, 124, 32, 0.5);
-}
-
-/* Position buttons in semi-circle */
-.chapter-button:nth-child(1) { transform: translate(-120px, -60px) rotate(-60deg); }
-.chapter-button:nth-child(2) { transform: translate(-60px, -100px) rotate(-30deg); }
-.chapter-button:nth-child(3) { transform: translate(0px, -120px) rotate(0deg); }
-.chapter-button:nth-child(4) { transform: translate(60px, -100px) rotate(30deg); }
-.chapter-button:nth-child(5) { transform: translate(120px, -60px) rotate(60deg); }
-.chapter-button:nth-child(6) { transform: translate(150px, 0px) rotate(90deg); }
-
-.chapter-button span {
-    transform: rotate(calc(var(--rotation) * -1deg));
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Content Display Area */
-.content-display-area {
-    min-height: 400px;
-}
-
-.content-cards {
-    display: grid;
-    gap: 20px;
-}
-
-.content-card {
-    position: relative;
-    height: 200px;
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.content-card:hover {
-    transform: scale(1.05);
-}
-
-.card-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.content-card:hover .card-background {
-    transform: scale(1.05);
-}
-
-.card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.content-card:hover .card-overlay {
-    opacity: 1;
-}
-
-.card-title {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    transform: translateY(20px);
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-body {
-    color: white;
-    font-size: 1rem;
-    line-height: 1.5;
-    transform: translateY(20px);
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.content-card:hover .card-title,
-.content-card:hover .card-body {
-    transform: translateY(0);
-}
-
-/* Chapter-specific background images */
-.content-card[data-chapter="prologue"] .card-background {
-    background-image: url('images/beach.JPEG');
-}
-
-.content-card[data-chapter="chapter1"] .card-background {
-    background-image: url('images/bench.JPEG');
-}
-
-.content-card[data-chapter="chapter2"] .card-background {
-    background-image: url('images/castle.JPEG');
-}
-
-.content-card[data-chapter="chapter3"] .card-background {
-    background-image: url('images/fusya7.JPEG');
-}
-
-.content-card[data-chapter="chapter4"] .card-background {
-    background-image: url('images/simonada.JPEG');
-}
-
-.content-card[data-chapter="chapter5"] .card-background {
-    background-image: url('images/urulu.jpg');
-}
-
-/* Show only the active chapter's content card */
-.content-card {
-    display: none;
-}
-
-.content-card.active {
-    display: block;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .semi-circle-container {
-        height: 300px;
-        margin-bottom: 30px;
-    }
-    
-    .semi-circle-menu {
-        width: 250px;
-        height: 125px;
-    }
-    
-    .chapter-button {
-        width: 70px;
-        height: 70px;
-        font-size: 12px;
-    }
-    
-    /* Adjust button positions for smaller screen */
-    .chapter-button:nth-child(1) { transform: translate(-100px, -50px) rotate(-60deg); }
-    .chapter-button:nth-child(2) { transform: translate(-50px, -85px) rotate(-30deg); }
-    .chapter-button:nth-child(3) { transform: translate(0px, -100px) rotate(0deg); }
-    .chapter-button:nth-child(4) { transform: translate(50px, -85px) rotate(30deg); }
-    .chapter-button:nth-child(5) { transform: translate(100px, -50px) rotate(60deg); }
-    .chapter-button:nth-child(6) { transform: translate(125px, 0px) rotate(90deg); }
-}
-
-@media (max-width: 768px) {
-    .semi-circle-container {
-        height: 250px;
-    }
-    
-    .semi-circle-menu {
-        width: 200px;
-        height: 100px;
-    }
-    
-    .chapter-button {
-        width: 60px;
-        height: 60px;
-        font-size: 11px;
-    }
-    
-    /* Further adjust button positions */
-    .chapter-button:nth-child(1) { transform: translate(-80px, -40px) rotate(-60deg); }
-    .chapter-button:nth-child(2) { transform: translate(-40px, -70px) rotate(-30deg); }
-    .chapter-button:nth-child(3) { transform: translate(0px, -80px) rotate(0deg); }
-    .chapter-button:nth-child(4) { transform: translate(40px, -70px) rotate(30deg); }
-    .chapter-button:nth-child(5) { transform: translate(80px, -40px) rotate(60deg); }
-    .chapter-button:nth-child(6) { transform: translate(100px, 0px) rotate(90deg); }
 } 
