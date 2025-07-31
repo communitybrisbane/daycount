@@ -59,24 +59,21 @@
 
     <main class="container mx-auto px-4 md:px-8 py-16">
         
-        <!-- About This Section -->
-        <section id="about-this" class="text-center max-w-4xl mx-auto mb-20 fade-in-up">
-            <div class="about-container relative overflow-hidden rounded-lg shadow-lg bg-white">
+        <!-- Introduction Section -->
+        <section id="introduction" class="text-center max-w-4xl mx-auto mb-20 fade-in-up">
+            <div class="intro-container relative overflow-hidden rounded-lg shadow-lg bg-white">
                 <!-- Background Image -->
-                <div class="about-image">
-                    <img src="images/santa 169.jpg" alt="Taku's Story" class="w-full h-full object-cover transition-all duration-500">
+                <div class="intro-image">
+                    <img src="images/santa 169.jpg" alt="Taku's Story" class="w-full h-full object-cover transition-all duration-500" loading="lazy">
                 </div>
                 
-                <!-- Background Text -->
-                <div class="background-text">STORY</div>
-                
                 <!-- Content Overlay -->
-                <div class="content-overlay absolute inset-0 flex items-center justify-center">
-                    <div class="text-content text-center">
-                        <h2 class="main-title text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                <div class="intro-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 flex items-center justify-center p-8">
+                    <div class="intro-content text-center text-white transform translate-y-4">
+                        <h2 id="intro-title" class="text-4xl md:text-5xl font-bold mb-4">
                             これは、Takuの物語。
                         </h2>
-                        <p class="subtitle text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                        <p id="intro-body" class="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
                             大学院を休学し、オーストラリアへ。そこでは、想像もしなかった出会いと挑戦が待っていました。これは、孤独なスタートから始まり、多くの仲間と共に「居場所」を作り上げ、自分だけの地図を描いた一年間の記録です。
                         </p>
                     </div>
@@ -84,65 +81,20 @@
             </div>
         </section>
 
-        <!-- Vertical Table of Contents -->
-        <section id="vertical-toc" class="mb-20 fade-in-up">
-            <div class="vertical-toc-container">
-                <div class="toc-title">Table of Contents</div>
-                <div class="toc-sections">
-                    <div class="toc-section" data-index="0">
-                        <div class="section-number">01</div>
-                        <div class="section-content">
-                            <h3 class="section-title">序章：冒険の始まり</h3>
-                            <p class="section-description">大学院を休学し、オーストラリアへ。想像もしなかった出会いと挑戦が待っていました。</p>
-                        </div>
-                    </div>
-                    <div class="toc-section" data-index="1">
-                        <div class="section-number">02</div>
-                        <div class="section-content">
-                            <h3 class="section-title">第1章：孤独とサバイバル</h3>
-                            <p class="section-description">ブリスベン到着から始まる新しい生活。生活インフラ整備と友達作りへの挑戦。</p>
-                        </div>
-                    </div>
-                    <div class="toc-section" data-index="2">
-                        <div class="section-number">03</div>
-                        <div class="section-content">
-                            <h3 class="section-title">第2章：居場所の創造</h3>
-                            <p class="section-description">community_brisbaneの誕生。おにぎりイベントと経済的自立への道のり。</p>
-                        </div>
-                    </div>
-                    <div class="toc-section" data-index="3">
-                        <div class="section-number">04</div>
-                        <div class="section-content">
-                            <h3 class="section-title">第3章：仲間との絆</h3>
-                            <p class="section-description">相棒との出会い。クリスマス会・BBQと休学延長の決断。</p>
-                        </div>
-                    </div>
-                    <div class="toc-section" data-index="4">
-                        <div class="section-number">05</div>
-                        <div class="section-content">
-                            <h3 class="section-title">第4章：ロードトリップ</h3>
-                            <p class="section-description">8週間の旅。ウルル・シドニーでの新しい発見。</p>
-                        </div>
-                    </div>
-                    <div class="toc-section" data-index="5">
-                        <div class="section-number">06</div>
-                        <div class="section-content">
-                            <h3 class="section-title">第5章：365日目の約束</h3>
-                            <p class="section-description">新たな相棒との出会い。ワーホリ終了と新たなスタート。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Story Timeline Section -->
-        <section id="story-timeline">
-            <div class="relative max-w-3xl mx-auto">
-                <div class="timeline-path"></div>
-                <div id="timeline-content">
-                    <!-- Timeline items will be populated by JavaScript -->
-                </div>
+        <section id="story-timeline" class="py-20 bg-gradient-to-br from-cyan-600 to-teal-700">
+          <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in-up">
+              <h2 class="text-4xl font-bold text-white mb-4">THE BRISBANE GAME</h2>
+              <p class="text-xl text-cyan-100">365日の物語</p>
             </div>
+            <div class="max-w-4xl mx-auto relative">
+              <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-cyan-300"></div>
+              <div id="timeline-content" class="space-y-16 relative z-10">
+                <!-- Timeline content will be dynamically generated by JavaScript -->
+              </div>
+            </div>
+          </div>
         </section>
         
         <!-- Epilogue Section -->
@@ -224,16 +176,16 @@
     </footer>
 
     <!-- Modal Structure -->
-    <div id="storyModal" class="modal fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+    <div id="storyModal" class="modal fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalBody">
         <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col transition-transform duration-300 transform scale-95" id="modalContent">
             <!-- Image will be placed here by JS -->
-            <img id="modalImage" src="" alt="Story Image" class="w-full h-56 object-cover rounded-t-lg" onerror="this.style.display='none'">
+            <img id="modalImage" src="" alt="" class="w-full h-56 object-cover rounded-t-lg" onerror="this.style.display='none'">
             <div class="p-6 md:p-8 flex-grow">
                 <h3 id="modalTitle" class="text-2xl font-bold mb-4 text-[#005A9C]"></h3>
                 <p id="modalBody" class="text-[#495057] leading-relaxed whitespace-pre-line"></p>
             </div>
             <div class="px-6 py-4 bg-gray-50 text-right border-t border-gray-200 sticky bottom-0">
-                <button id="modal-close-btn" onclick="closeModal()" class="px-6 py-2 bg-[#F47C20] text-white font-bold rounded-md hover:bg-[#d96812] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F47C20]">
+                <button id="modal-close-btn" onclick="closeModal()" class="px-6 py-2 bg-[#F47C20] text-white font-bold rounded-md hover:bg-[#d96812] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F47C20]" aria-label="モーダルを閉じる">
                     <span id="modal-close-text">閉じる</span>
                 </button>
             </div>

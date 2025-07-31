@@ -115,166 +115,6 @@ const translations = {
     }
 };
 
-// Vertical Table of Contents Drag Functionality
-function initVerticalToc() {
-    const tocSections = document.querySelectorAll('.toc-section');
-    const tocContainer = document.querySelector('.toc-sections');
-    
-    if (!tocContainer) return;
-    
-    let draggedElement = null;
-    let draggedIndex = null;
-    let originalIndex = null;
-    
-    tocSections.forEach((section, index) => {
-        section.addEventListener('mousedown', handleMouseDown);
-        section.addEventListener('touchstart', handleTouchStart);
-    });
-    
-    function handleMouseDown(e) {
-        e.preventDefault();
-        startDrag(e, this);
-    }
-    
-    function handleTouchStart(e) {
-        e.preventDefault();
-        startDrag(e.touches[0], this);
-    }
-    
-    function startDrag(e, element) {
-        draggedElement = element;
-        originalIndex = parseInt(element.dataset.index);
-        draggedIndex = originalIndex;
-        
-        element.classList.add('dragging');
-        
-        // Set initial position
-        const rect = element.getBoundingClientRect();
-        const offsetX = e.clientX - rect.left;
-        const offsetY = e.clientY - rect.top;
-        
-        element.style.position = 'fixed';
-        element.style.zIndex = '1000';
-        element.style.width = rect.width + 'px';
-        element.style.pointerEvents = 'none';
-        
-        function handleMouseMove(e) {
-            if (!draggedElement) return;
-            
-            const x = e.clientX - offsetX;
-            const y = e.clientY - offsetY;
-            
-            draggedElement.style.left = x + 'px';
-            draggedElement.style.top = y + 'px';
-            
-            // Find the element under the cursor
-            const elements = Array.from(tocSections);
-            const currentIndex = elements.indexOf(draggedElement);
-            
-            elements.forEach((el, index) => {
-                if (el !== draggedElement) {
-                    const elRect = el.getBoundingClientRect();
-                    const elCenter = elRect.top + elRect.height / 2;
-                    const dragCenter = y + rect.height / 2;
-                    
-                    if (Math.abs(dragCenter - elCenter) < elRect.height / 2) {
-                        // Swap positions
-                        if (index !== currentIndex) {
-                            swapElements(currentIndex, index);
-                            draggedIndex = index;
-                        }
-                    }
-                }
-            });
-        }
-        
-        function handleMouseUp() {
-            if (draggedElement) {
-                finishDrag();
-            }
-        }
-        
-        function handleTouchMove(e) {
-            handleMouseMove(e.touches[0]);
-        }
-        
-        function handleTouchEnd() {
-            handleMouseUp();
-        }
-        
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-        document.addEventListener('touchmove', handleTouchMove, { passive: false });
-        document.addEventListener('touchend', handleTouchEnd);
-    }
-    
-    function swapElements(fromIndex, toIndex) {
-        const elements = Array.from(tocSections);
-        const fromElement = elements[fromIndex];
-        const toElement = elements[toIndex];
-        
-        if (fromElement && toElement) {
-            // Update data-index attributes
-            fromElement.dataset.index = toIndex;
-            toElement.dataset.index = fromIndex;
-            
-            // Swap in DOM
-            if (fromIndex < toIndex) {
-                toElement.parentNode.insertBefore(fromElement, toElement.nextSibling);
-            } else {
-                toElement.parentNode.insertBefore(fromElement, toElement);
-            }
-        }
-    }
-    
-    function finishDrag() {
-        if (draggedElement) {
-            draggedElement.classList.remove('dragging');
-            draggedElement.style.position = '';
-            draggedElement.style.zIndex = '';
-            draggedElement.style.width = '';
-            draggedElement.style.left = '';
-            draggedElement.style.top = '';
-            draggedElement.style.pointerEvents = '';
-            
-            // Update section numbers if needed
-            updateSectionNumbers();
-            
-            draggedElement = null;
-            draggedIndex = null;
-            originalIndex = null;
-        }
-        
-        // Remove event listeners
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-        document.removeEventListener('touchmove', handleTouchMove);
-        document.removeEventListener('touchend', handleTouchEnd);
-    }
-    
-    function updateSectionNumbers() {
-        const sections = document.querySelectorAll('.toc-section');
-        sections.forEach((section, index) => {
-            const numberElement = section.querySelector('.section-number');
-            if (numberElement) {
-                numberElement.textContent = String(index + 1).padStart(2, '0');
-            }
-        });
-    }
-}
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    renderContent(); // Initial render in Japanese
-    
-    const langToggleButton = document.getElementById('lang-toggle');
-    langToggleButton.addEventListener('click', () => {
-        currentLang = currentLang === 'ja' ? 'en' : 'ja';
-        renderContent();
-    });
-    initVerticalToc();
-});
-
 // Function to render all dynamic content based on the current language
 function renderContent() {
     const T = translations[currentLang];
@@ -286,21 +126,57 @@ function renderContent() {
         });
     }, { threshold: 0.1 });
 
-    // Update static text elements
+    // Update page title
     document.title = T.pageTitle;
-    document.getElementById('lang-toggle').textContent = T.langToggle;
-    document.getElementById('header-subtitle').textContent = T.headerSubtitle;
-    document.getElementById('intro-title').textContent = T.introTitle;
-    document.getElementById('intro-body').textContent = T.introBody;
-    document.getElementById('epilogue-title').textContent = T.epilogueTitle;
-    document.getElementById('epilogue-h1').textContent = T.epilogueH1;
-    document.getElementById('epilogue-p1').textContent = T.epilogueP1;
-    document.getElementById('epilogue-h2').textContent = T.epilogueH2;
-    document.getElementById('epilogue-p2').textContent = T.epilogueP2;
-    document.getElementById('bonus-title').textContent = T.bonusTitle;
-    document.getElementById('bonus-h1').textContent = T.bonusH1;
-    document.getElementById('skills-title').textContent = T.skillsTitle;
-    document.getElementById('skills-subtitle').textContent = T.skillsSubtitle;
+    
+    // Update language toggle button
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        langToggle.textContent = T.langToggle;
+    }
+    
+    // Update header subtitle
+    const headerSubtitle = document.getElementById('header-subtitle');
+    if (headerSubtitle) {
+        headerSubtitle.textContent = T.headerSubtitle;
+    }
+    
+    // Update introduction section
+    const introTitle = document.getElementById('intro-title');
+    const introBody = document.getElementById('intro-body');
+    if (introTitle) {
+        introTitle.textContent = T.introTitle;
+    }
+    if (introBody) {
+        introBody.textContent = T.introBody;
+    }
+    
+    // Update epilogue section
+    const epilogueTitle = document.getElementById('epilogue-title');
+    const epilogueH1 = document.getElementById('epilogue-h1');
+    const epilogueP1 = document.getElementById('epilogue-p1');
+    const epilogueH2 = document.getElementById('epilogue-h2');
+    const epilogueP2 = document.getElementById('epilogue-p2');
+    
+    if (epilogueTitle) epilogueTitle.textContent = T.epilogueTitle;
+    if (epilogueH1) epilogueH1.textContent = T.epilogueH1;
+    if (epilogueP1) epilogueP1.textContent = T.epilogueP1;
+    if (epilogueH2) epilogueH2.textContent = T.epilogueH2;
+    if (epilogueP2) epilogueP2.textContent = T.epilogueP2;
+    
+    // Update bonus section
+    const bonusTitle = document.getElementById('bonus-title');
+    const bonusH1 = document.getElementById('bonus-h1');
+    
+    if (bonusTitle) bonusTitle.textContent = T.bonusTitle;
+    if (bonusH1) bonusH1.textContent = T.bonusH1;
+    
+    // Update skills section
+    const skillsTitle = document.getElementById('skills-title');
+    const skillsSubtitle = document.getElementById('skills-subtitle');
+    
+    if (skillsTitle) skillsTitle.textContent = T.skillsTitle;
+    if (skillsSubtitle) skillsSubtitle.textContent = T.skillsSubtitle;
     
     // Update modal close button text
     const modalCloseText = document.getElementById('modal-close-text');
@@ -310,89 +186,101 @@ function renderContent() {
 
     // Clear and re-render the story timeline
     const timelineContainer = document.getElementById('timeline-content');
-    timelineContainer.innerHTML = '';
-    let currentChapter = "";
-    T.storyData.forEach((item, index) => {
-        if (item.chapter !== currentChapter) {
-            currentChapter = item.chapter;
-            const chapterHeader = document.createElement('div');
-            chapterHeader.className = 'timeline-item relative pl-10 pb-4 fade-in-up';
-            chapterHeader.innerHTML = `<h3 class="text-xl md:text-2xl font-bold text-[#005A9C] pt-10">${currentChapter}</h3>`;
-            timelineContainer.appendChild(chapterHeader);
-            observer.observe(chapterHeader);
-        }
-        const card = document.createElement('div');
-        card.className = 'timeline-item relative pl-10 pb-8 fade-in-up';
-        card.style.transitionDelay = `${(index % 5) * 100}ms`;
-        card.innerHTML = `
-            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-[#005A9C]/50 transition-all duration-300 cursor-pointer hover:-translate-y-1" onclick="openModal(${index})">
-                <div class="flex items-start space-x-4">
-                    <div class="text-3xl text-[#005A9C] bg-blue-100 p-3 rounded-full">${item.icon}</div>
-                    <div class="flex-1">
-                        <h4 class="text-lg font-bold text-[#212529] mb-2">${item.title}</h4>
-                        <p class="text-[#495057] text-sm leading-relaxed">${item.summary}</p>
+    if (timelineContainer) {
+        timelineContainer.innerHTML = '';
+        let currentChapter = "";
+        T.storyData.forEach((item, index) => {
+            if (item.chapter !== currentChapter) {
+                currentChapter = item.chapter;
+                const chapterHeader = document.createElement('div');
+                chapterHeader.className = 'timeline-item relative pl-10 pb-4 fade-in-up';
+                chapterHeader.innerHTML = `<h3 class="text-xl md:text-2xl font-bold text-white pt-10">${currentChapter}</h3>`;
+                timelineContainer.appendChild(chapterHeader);
+                observer.observe(chapterHeader);
+            }
+            const card = document.createElement('div');
+            card.className = 'timeline-item relative pl-10 pb-8 fade-in-up';
+            card.style.transitionDelay = `${(index % 5) * 100}ms`;
+            card.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-[#005A9C]/50 transition-all duration-300 cursor-pointer hover:-translate-y-1" onclick="openModal(${index})">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl text-[#005A9C] bg-blue-100 p-3 rounded-full">${item.icon}</div>
+                        <div class="flex-1">
+                            <h4 class="text-lg font-bold text-[#212529] mb-2">${item.title}</h4>
+                            <p class="text-[#495057] text-sm leading-relaxed">${item.summary}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-        timelineContainer.appendChild(card);
-        observer.observe(card);
-    });
+            `;
+            timelineContainer.appendChild(card);
+            observer.observe(card);
+        });
+    } else {
+        console.error('Timeline container not found');
+    }
 
     // Clear and re-render the accordion section
     const accordionContainer = document.getElementById('accordion-container');
-    accordionContainer.innerHTML = '';
-    T.bonusAccordionData.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'border border-gray-200 rounded-lg bg-white shadow-sm';
-        div.innerHTML = `
-            <button class="accordion-header w-full flex justify-between items-center p-5 text-left font-bold text-[#212529] hover:bg-gray-50 transition-colors">
-                <span>${item.title}</span>
-                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-            </button>
-            <div class="accordion-content">
-                <p class="p-5 pt-0 text-[#495057]">${item.content}</p>
-            </div>
-        `;
-        accordionContainer.appendChild(div);
-    });
-    
-    // Add event listeners to the new accordion headers
-    document.querySelectorAll('.accordion-header').forEach(button => {
-        button.addEventListener('click', () => {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('svg');
-            const isOpening = !content.style.maxHeight || content.style.maxHeight === "0px";
-            
-            // Close all other accordions first
-            document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = "0px");
-            document.querySelectorAll('.accordion-header svg').forEach(i => i.style.transform = 'rotate(0deg)');
-
-            // Open the clicked accordion if it was closed
-            if (isOpening) {
-                content.style.maxHeight = content.scrollHeight + "px";
-                icon.style.transform = 'rotate(180deg)';
-            }
+    if (accordionContainer) {
+        accordionContainer.innerHTML = '';
+        T.bonusAccordionData.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'border border-gray-200 rounded-lg bg-white shadow-sm';
+            div.innerHTML = `
+                <button class="accordion-header w-full flex justify-between items-center p-5 text-left font-bold text-[#212529] hover:bg-gray-50 transition-colors">
+                    <span>${item.title}</span>
+                    <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <p class="p-5 pt-0 text-[#495057]">${item.content}</p>
+                </div>
+            `;
+            accordionContainer.appendChild(div);
         });
-    });
+        
+        // Add event listeners to the new accordion headers
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('svg');
+                const isOpening = !content.style.maxHeight || content.style.maxHeight === "0px";
+                
+                // Close all other accordions first
+                document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = "0px");
+                document.querySelectorAll('.accordion-header svg').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                // Open the clicked accordion if it was closed
+                if (isOpening) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+    } else {
+        console.error('Accordion container not found');
+    }
 
     // Clear and re-render the skills grid
     const skillsGrid = document.getElementById('skills-grid');
-    skillsGrid.innerHTML = '';
-    T.skillsData.forEach(skill => {
-        const skillCard = document.createElement('div');
-        skillCard.className = 'flex items-start space-x-4 text-left';
-        skillCard.innerHTML = `
-            <div class="flex-shrink-0 w-12 h-12 rounded-full ${skill.name.includes('AI') ? 'bg-purple-100' : skill.name.includes('HP') || skill.name.includes('Website') ? 'bg-pink-100' : skill.name.includes('マーケティング') || skill.name.includes('Marketing') ? 'bg-sky-100' : 'bg-indigo-100'} flex items-center justify-center">
-                ${getSkillIcon(skill.name)}
-            </div>
-            <div>
-                <h4 class="font-bold text-lg text-[#212529] mb-1">${skill.name}</h4>
-                <p class="text-sm text-gray-600 leading-relaxed">${skill.description}</p>
-            </div>
-        `;
-        skillsGrid.appendChild(skillCard);
-    });
+    if (skillsGrid) {
+        skillsGrid.innerHTML = '';
+        T.skillsData.forEach(skill => {
+            const skillCard = document.createElement('div');
+            skillCard.className = 'flex items-start space-x-4 text-left';
+            skillCard.innerHTML = `
+                <div class="flex-shrink-0 w-12 h-12 rounded-full ${skill.name.includes('AI') ? 'bg-purple-100' : skill.name.includes('HP') || skill.name.includes('Website') ? 'bg-pink-100' : skill.name.includes('マーケティング') || skill.name.includes('Marketing') ? 'bg-sky-100' : 'bg-indigo-100'} flex items-center justify-center">
+                    ${getSkillIcon(skill.name)}
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg text-[#212529] mb-1">${skill.name}</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">${skill.description}</p>
+                </div>
+            `;
+            skillsGrid.appendChild(skillCard);
+        });
+    } else {
+        console.error('Skills grid not found');
+    }
 
     // Re-apply the observer to all elements that need the fade-in animation
     document.querySelectorAll('.fade-in-up').forEach(el => {
@@ -420,53 +308,101 @@ const modalContent = document.getElementById('modalContent');
     
 // Function to open the modal with content for a specific story item
 function openModal(index) {
-    const item = translations[currentLang].storyData[index];
+    const modal = document.getElementById('storyModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
     
-    // Set image source and alt text
-    if (item.image) {
-        modalImage.src = item.image;
-        modalImage.alt = item.title;
+    const T = translations[currentLang];
+    const story = T.storyData[index];
+    
+    // 画像のエラーハンドリングを改善
+    if (story.image && story.image !== '') {
+        modalImage.src = story.image;
         modalImage.style.display = 'block';
+        modalImage.onerror = function() {
+            this.style.display = 'none';
+        };
     } else {
         modalImage.style.display = 'none';
     }
-
-    // Set modal title and body text
-    document.getElementById('modalTitle').textContent = item.title;
-    document.getElementById('modalBody').textContent = item.details; // Use 'details' for modal body
     
-    // Show the modal with a transition
-    modal.classList.remove('opacity-0', 'pointer-events-none');
-    setTimeout(() => {
-        modalContent.classList.remove('scale-95');
-    }, 10); // Short delay to allow CSS transition to trigger
+    modalTitle.textContent = story.title;
+    modalBody.textContent = story.details;
+    
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
 }
 
 // Function to close the modal
 function closeModal() {
-    modalContent.classList.add('scale-95');
-    modal.classList.add('opacity-0');
-    // Add pointer-events-none after the transition ends to prevent interaction
+    const modal = document.getElementById('storyModal');
+    const modalContent = document.getElementById('modalContent');
+    
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+    
+    // モーダルが完全に閉じた後にコンテンツをリセット
     setTimeout(() => {
-         modal.classList.add('pointer-events-none');
-    }, 300); // Duration should match the CSS transition
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        
+        modalImage.src = '';
+        modalImage.alt = '';
+        modalTitle.textContent = '';
+        modalBody.textContent = '';
+    }, 300);
 }
 
 // Global function for modal close button
 window.closeModal = closeModal;
 
-// Event listener to close the modal when clicking on the background overlay
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('modal')) {
-        closeModal();
-    }
-});
-
-// Keyboard support for modal
+// Add keyboard navigation for modal
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
+        const modal = document.getElementById('storyModal');
+        if (modal.classList.contains('show')) {
+            closeModal();
+        }
+    }
+});
+
+// Add click outside modal to close
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('storyModal');
+    if (e.target === modal) {
         closeModal();
     }
 });
 
- 
+// Language toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the page with Japanese content
+    renderContent();
+    
+    // Add event listener for language toggle
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', function() {
+            // Toggle language
+            currentLang = currentLang === 'ja' ? 'en' : 'ja';
+            // Re-render content with new language
+            renderContent();
+        });
+    }
+    
+    // Initialize fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el);
+    });
+});

@@ -136,6 +136,10 @@ header > div {
     transition: max-height 0.4s ease-in-out;
 }
 
+.accordion-content.active {
+    max-height: 500px;
+}
+
 /* Fade-in and up animation for elements */
 .fade-in-up {
     opacity: 0;
@@ -642,109 +646,74 @@ html {
     }
 } 
 
-/* About This Section Styles */
-.about-container {
-    position: relative;
-    min-height: 500px;
-    overflow: hidden;
-    transition: all 0.5s ease;
-}
-
-.about-container:hover .about-image {
-    opacity: 0;
-    transform: scale(1.1);
-}
-
-.about-container:hover .background-text {
-    opacity: 0;
-}
-
-.about-image {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Introduction Section Hover Effects */
+.intro-container {
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
-    height: 100%;
-    transition: all 0.5s ease;
+    max-width: 100%;
 }
 
-.background-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-    font-weight: 900;
-    color: rgba(0, 0, 0, 0.05);
-    z-index: 1;
-    transition: all 0.5s ease;
-    pointer-events: none;
+.intro-image {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
 }
 
-.content-overlay {
-    position: relative;
-    z-index: 2;
-    padding: 4rem 2rem;
-    transition: all 0.5s ease;
+.intro-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.text-content {
-    transition: all 0.5s ease;
-}
-
-.about-container:hover .text-content {
+.intro-container:hover .intro-image img {
     transform: scale(1.05);
+    filter: brightness(0.3);
 }
 
-.main-title {
-    transition: all 0.5s ease;
+.intro-container:hover .intro-overlay {
+    opacity: 1;
 }
 
-.subtitle {
-    transition: all 0.5s ease;
+.intro-container:hover .intro-content {
+    transform: translateY(0);
 }
 
-/* Responsive Design */
+.intro-overlay {
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.intro-content {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive Design for Introduction */
 @media (max-width: 768px) {
-    .about-container {
+    .intro-container {
         min-height: 400px;
     }
     
-    .background-text {
-        font-size: 6rem;
-    }
-    
-    .content-overlay {
-        padding: 3rem 1.5rem;
-    }
-    
-    .main-title {
+    .intro-content h2 {
         font-size: 2.5rem;
     }
     
-    .subtitle {
+    .intro-content p {
         font-size: 1rem;
     }
 }
 
 @media (max-width: 640px) {
-    .about-container {
+    .intro-container {
         min-height: 350px;
     }
     
-    .background-text {
-        font-size: 4rem;
-    }
-    
-    .content-overlay {
-        padding: 2rem 1rem;
-    }
-    
-    .main-title {
+    .intro-content h2 {
         font-size: 2rem;
     }
     
-    .subtitle {
+    .intro-content p {
         font-size: 0.9rem;
     }
 } 
@@ -944,163 +913,51 @@ html {
     }
 } 
 
-/* Vertical Table of Contents Styles */
-.vertical-toc-container {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
+/* Timeline Styles for Story Section */
+#story-timeline {
+  position: relative;
 }
 
-.toc-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #005A9C;
-    margin-bottom: 40px;
-    text-align: center;
+.timeline-item {
+  position: relative;
+  z-index: 2;
 }
 
-.toc-sections {
-    position: relative;
+.timeline-img-wrapper {
+  position: relative;
+  overflow: hidden;
 }
 
-.toc-sections::before {
-    content: '';
-    position: absolute;
-    left: 30px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #005A9C, #4CAF50);
-    z-index: 1;
+.timeline-details {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s, transform 0.5s;
+  background: transparent;
 }
 
-.toc-section {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    background: #f8f9fa;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    cursor: grab;
-    user-select: none;
+.group:hover .timeline-details {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.toc-section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+.group:hover img {
+  opacity: 0.3;
 }
 
-.toc-section.dragging {
-    cursor: grabbing;
-    opacity: 0.8;
-    transform: scale(1.02);
-}
-
-.section-number {
-    position: relative;
-    z-index: 2;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #005A9C, #4CAF50);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-right: 25px;
-    flex-shrink: 0;
-}
-
-.section-content {
-    flex: 1;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    border-left: 4px solid #005A9C;
-}
-
-.section-title {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #005A9C;
-    margin-bottom: 8px;
-}
-
-.section-description {
-    font-size: 1rem;
-    color: #6b7280;
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-    .vertical-toc-container {
-        padding: 20px 15px;
-    }
-    
-    .toc-title {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
-    }
-    
-    .toc-section {
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .section-number {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-        margin-right: 20px;
-    }
-    
-    .section-content {
-        padding: 15px;
-    }
-    
-    .section-title {
-        font-size: 1.1rem;
-    }
-    
-    .section-description {
-        font-size: 0.9rem;
-    }
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .timeline-img-wrapper {
+    margin-bottom: 1rem;
+    margin-right: 0;
+  }
 }
-
-@media (max-width: 640px) {
-    .toc-sections::before {
-        left: 25px;
-    }
-    
-    .toc-section {
-        padding: 12px;
-        margin-bottom: 15px;
-    }
-    
-    .section-number {
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
-        margin-right: 15px;
-    }
-    
-    .section-content {
-        padding: 12px;
-    }
-    
-    .section-title {
-        font-size: 1rem;
-    }
-    
-    .section-description {
-        font-size: 0.85rem;
-    }
-} 
