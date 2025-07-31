@@ -461,3 +461,77 @@ html {
         font-size: 1.5rem !important;
     }
 } 
+
+/* Timeline Summary Table of Contents Styles */
+.timeline-chapter {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.timeline-chapter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.timeline-chapter:hover::before {
+    transform: translateX(100%);
+}
+
+.timeline-chapter:hover {
+    border-color: rgba(0, 90, 156, 0.2);
+    transform: translateY(-2px);
+}
+
+.chapter-number {
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.timeline-chapter:hover .chapter-number {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-chapter a {
+    position: relative;
+    text-decoration: none;
+    display: block;
+    padding: 2px 0;
+}
+
+.timeline-chapter a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #005A9C, #F47C20);
+    transition: width 0.3s ease;
+}
+
+.timeline-chapter a:hover::after {
+    width: 100%;
+}
+
+/* Responsive adjustments for timeline summary */
+@media (max-width: 768px) {
+    .timeline-chapter {
+        margin-bottom: 1rem;
+    }
+    
+    .chapter-number {
+        width: 3rem !important;
+        height: 3rem !important;
+        font-size: 1.5rem !important;
+    }
+} 
