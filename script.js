@@ -188,32 +188,106 @@ function renderContent() {
     const timelineContainer = document.getElementById('timeline-content');
     if (timelineContainer) {
         timelineContainer.innerHTML = '';
-        let currentChapter = "";
-        T.storyData.forEach((item, index) => {
-            if (item.chapter !== currentChapter) {
-                currentChapter = item.chapter;
-                const chapterHeader = document.createElement('div');
-                chapterHeader.className = 'timeline-item relative pl-10 pb-4 fade-in-up';
-                chapterHeader.innerHTML = `<h3 class="text-xl md:text-2xl font-bold text-white pt-10">${currentChapter}</h3>`;
-                timelineContainer.appendChild(chapterHeader);
-                observer.observe(chapterHeader);
+        
+        // Timeline data with images and colors
+        const timelineData = [
+            {
+                number: "01",
+                icon: "🔍",
+                title: "序章：冒険の始まり",
+                subtitle: "PROLOGUE",
+                description: "大学院を休学し、オーストラリアへの準備期間。セブ島での語学留学を通じて、海外生活の基礎を築きました。",
+                color: "from-cyan-400 to-blue-500",
+                image: "images/santa 169.jpg"
+            },
+            {
+                number: "02", 
+                icon: "💼",
+                title: "孤独とサバイバル",
+                subtitle: "SOLITUDE",
+                description: "ブリスベン到着後のサバイバル生活。生活インフラの整備と友達作りへの挑戦が始まりました。",
+                color: "from-red-400 to-pink-500",
+                image: "images/bench.JPEG"
+            },
+            {
+                number: "03",
+                icon: "📊",
+                title: "創造の瞬間",
+                subtitle: "CREATION", 
+                description: "community_brisbaneの誕生。おにぎりイベントを通じて、多くの仲間との出会いが生まれました。",
+                color: "from-orange-400 to-yellow-500",
+                image: "images/fusya7.JPEG"
+            },
+            {
+                number: "04",
+                icon: "📱",
+                title: "絆の構築",
+                subtitle: "BONDS",
+                description: "相棒との出会い。クリスマス会やBBQを通じて、深い絆が育まれました。",
+                color: "from-red-400 to-pink-500",
+                image: "images/koala.jpg"
+            },
+            {
+                number: "05",
+                icon: "💬",
+                title: "約束の未来",
+                subtitle: "PROMISE",
+                description: "365日目の約束。新たな相棒との出会いと、新たな挑戦への決意。",
+                color: "from-cyan-400 to-blue-500",
+                image: "images/urulu.jpg"
             }
-            const card = document.createElement('div');
-            card.className = 'timeline-item relative pl-10 pb-8 fade-in-up';
-            card.style.transitionDelay = `${(index % 5) * 100}ms`;
-            card.innerHTML = `
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-[#005A9C]/50 transition-all duration-300 cursor-pointer hover:-translate-y-1" onclick="openModal(${index})">
-                    <div class="flex items-start space-x-4">
-                        <div class="text-3xl text-[#005A9C] bg-blue-100 p-3 rounded-full">${item.icon}</div>
-                        <div class="flex-1">
-                            <h4 class="text-lg font-bold text-[#212529] mb-2">${item.title}</h4>
-                            <p class="text-[#495057] text-sm leading-relaxed">${item.summary}</p>
+        ];
+
+        timelineData.forEach((item, index) => {
+            const isLeft = index % 2 === 1; // Alternate left and right
+            const timelineItem = document.createElement('div');
+            timelineItem.className = `timeline-item relative mb-16 fade-in-up`;
+            timelineItem.style.transitionDelay = `${index * 200}ms`;
+            
+            timelineItem.innerHTML = `
+                <div class="flex items-center ${isLeft ? 'flex-row' : 'flex-row-reverse'}">
+                    <!-- Content Side -->
+                    <div class="w-1/2 ${isLeft ? 'pr-8 text-right' : 'pl-8 text-left'}">
+                        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center ${isLeft ? 'justify-end' : 'justify-start'} mb-4">
+                                <div class="text-4xl mr-3">${item.icon}</div>
+                                <div class="text-6xl font-bold text-gray-300">${item.number}</div>
+                            </div>
+                            <div class="bg-gradient-to-r ${item.color} text-white px-4 py-2 rounded-lg inline-block mb-3">
+                                <span class="font-bold text-sm">${item.subtitle}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">${item.title}</h3>
+                            <p class="text-gray-600 leading-relaxed">${item.description}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Dot -->
+                    <div class="w-1/2 flex justify-center relative">
+                        <div class="w-8 h-8 bg-gradient-to-r ${item.color} rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                        <div class="w-3 h-3 bg-white rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"></div>
+                    </div>
+                    
+                    <!-- Image Side -->
+                    <div class="w-1/2 ${isLeft ? 'pl-8' : 'pr-8'}">
+                        <div class="relative group cursor-pointer" onclick="openTimelineModal(${index})">
+                            <div class="w-full h-48 rounded-lg overflow-hidden shadow-lg">
+                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
+                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
-            timelineContainer.appendChild(card);
-            observer.observe(card);
+            
+            timelineContainer.appendChild(timelineItem);
+            observer.observe(timelineItem);
         });
     } else {
         console.error('Timeline container not found');
@@ -357,6 +431,59 @@ function closeModal() {
 
 // Global function for modal close button
 window.closeModal = closeModal;
+
+// Timeline modal function
+function openTimelineModal(index) {
+    const timelineData = [
+        {
+            title: "序章：冒険の始まり",
+            description: "大学院を休学し、オーストラリアへの準備期間。セブ島での語学留学を通じて、海外生活の基礎を築きました。",
+            image: "images/santa 169.jpg",
+            details: "自分の人生を見つめなおし、「このままでは後悔する」という強い思いが込み上げてきました。周りの期待や安定した未来よりも、自分が本当に心惹かれる道を選びたい。そう決意し、休学届を提出。ここから、誰にも縛られない、自分だけの物語を描くための365日が始まりました。"
+        },
+        {
+            title: "孤独とサバイバル", 
+            description: "ブリスベン到着後のサバイバル生活。生活インフラの整備と友達作りへの挑戦が始まりました。",
+            image: "images/bench.JPEG",
+            details: "最初の1週間は本当に過酷でした。住む家を探し、銀行口座を開設し、携帯電話を契約する。一つ一つのタスクが大きな壁のように感じられました。言葉の壁にもぶつかりながら、必死で生活の基盤を築いていきました。"
+        },
+        {
+            title: "創造の瞬間",
+            description: "community_brisbaneの誕生。おにぎりイベントを通じて、多くの仲間との出会いが生まれました。",
+            image: "images/fusya7.JPEG", 
+            details: "待っていても何も変わらない。それなら、自分が人々が集まれる「機会」や「場所」を作ればいいんだ。最初は数人しか集まらなかったけれど、これが僕らのコミュニティの始まりでした。"
+        },
+        {
+            title: "絆の構築",
+            description: "相棒との出会い。クリスマス会やBBQを通じて、深い絆が育まれました。",
+            image: "images/koala.jpg",
+            details: "運営に悩んでいた時期に、僕の情熱に共感し、「一緒にやりたい」と言ってくれる最高の相棒に出会いました。彼との出会いがコミュニティをさらに加速させ、一人では見えなかった景色を見せてくれました。"
+        },
+        {
+            title: "約束の未来",
+            description: "365日目の約束。新たな相棒との出会いと、新たな挑戦への決意。",
+            image: "images/urulu.jpg",
+            details: "ブリスベンに戻ると、僕の旅の話とこれからの計画に目を輝かせ、「ぜひ一緒にやらせてほしい」という新しい仲間が現れました。僕の情熱が、また新しい情熱に火をつけた瞬間でした。"
+        }
+    ];
+    
+    const item = timelineData[index];
+    const modal = document.getElementById('storyModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    
+    modalImage.src = item.image;
+    modalImage.style.display = 'block';
+    modalTitle.textContent = item.title;
+    modalBody.textContent = item.details;
+    
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+// Global function for timeline modal
+window.openTimelineModal = openTimelineModal;
 
 // Add keyboard navigation for modal
 document.addEventListener('keydown', function(e) {
