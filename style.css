@@ -1,0 +1,310 @@
+/* General body styles */
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #F8F9FA;
+    color: #212529;
+}
+
+/* Custom font for specific elements */
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Timeline item pseudo-element for the dot */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -31px;
+    top: 24px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #005A9C;
+    border: 3px solid #F8F9FA;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect for the timeline dot */
+.timeline-item:hover::before {
+    transform: scale(1.2);
+}
+
+/* The vertical line for the timeline */
+.timeline-path {
+    position: absolute;
+    left: -23px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #DEE2E6;
+}
+
+/* Modal transition */
+.modal {
+    transition: opacity 0.3s ease;
+}
+
+/* Accordion content for smooth open/close */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+/* Fade-in and up animation for elements */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Visible state for the fade-in animation */
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Background gradient for the bonus section */
+.bonus-bg {
+    background-color: #eef2ff;
+    background-image:
+        radial-gradient(at 40% 20%, hsla(28,100%,74%,0.3) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189,100%,56%,0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355,100%,93%,0.3) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(340,100%,76%,0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(22,100%,77%,0.3) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(242,100%,70%,0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(343,100%,76%,0.3) 0px, transparent 50%);
+}
+
+/* Header Carousel */
+#header-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+/* Timeline Styles */
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-left: 0;
+    margin-right: 3rem;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: 3rem;
+    margin-right: 0;
+    text-align: left;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 1.5rem;
+    width: 16px;
+    height: 16px;
+    background: #F47C20;
+    border: 3px solid white;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px #005A9C;
+    z-index: 10;
+}
+
+.timeline-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Accordion Styles */
+.accordion-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.accordion-header {
+    padding: 1rem 1.5rem;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: between;
+    align-items: center;
+}
+
+.accordion-header:hover {
+    background: #f1f5f9;
+}
+
+.accordion-content.active {
+    max-height: 500px;
+}
+
+.accordion-body {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Modal Styles */
+.modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal.show #modalContent {
+    transform: scale(1);
+}
+
+/* Skills Grid */
+.skill-item {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.skill-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #005A9C, #F47C20);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline-path {
+        left: 2rem;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 4rem;
+        margin-right: 0;
+        text-align: left;
+    }
+    
+    .timeline-dot {
+        left: 2rem;
+    }
+    
+    .font-montserrat {
+        font-size: 3rem !important;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #005A9C;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #F47C20;
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #005A9C, #F47C20);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 90, 156, 0.3);
+}
+
+/* Text Selection */
+::selection {
+    background: #005A9C;
+    color: white;
+}
+
+::-moz-selection {
+    background: #005A9C;
+    color: white;
+} 

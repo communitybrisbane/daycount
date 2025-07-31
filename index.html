@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE BRISBANE GAME ― 休学ワーホリ、初海外、仲間と駆け抜けた365日</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased overflow-x-hidden">
+    <!-- Language Toggle Button -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="lang-toggle" class="bg-white/80 backdrop-blur-sm text-[#005A9C] font-semibold py-2 px-4 rounded-full shadow-md hover:bg-white transition-colors">
+            English
+        </button>
+    </div>
+
+    <!-- Header Section -->
+    <header class="text-center py-24 px-4 bg-white">
+        <div class="fade-in-up visible">
+            <h1 class="font-montserrat text-5xl md:text-8xl font-extrabold text-[#0B69A3] tracking-wider">THE BRISBANE GAME</h1>
+            <p id="header-subtitle" class="text-lg md:text-xl text-[#299DBC] mt-4">― 休学ワーホリ、初海外、仲間と駆け抜けた365日 ―</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 md:px-8 py-16">
+        
+        <section id="introduction" class="text-center max-w-3xl mx-auto mb-20 fade-in-up">
+            <h2 id="intro-title" class="text-2xl font-bold mb-4 text-[#005A9C]">これは、僕の物語。</h2>
+            <p id="intro-body" class="text-md md:text-lg leading-relaxed text-[#495057]">
+                大学院を休学し、オーストラリアへ。そこでは、想像もしなかった出会いと挑戦が待っていました。これは、孤独なスタートから始まり、多くの仲間と共に「居場所」を作り上げ、自分だけの地図を描いた一年間の記録です。このページでは、僕の旅の道のりを時系列で追いながら、その時々の出来事を追体験できます。ぜひ、僕の365日のゲームを一緒に楽しんでください。
+            </p>
+        </section>
+
+        <section id="story-timeline">
+            <div class="relative max-w-3xl mx-auto">
+                <div class="timeline-path"></div>
+                <div id="timeline-content">
+                    <!-- Timeline items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <section id="epilogue" class="text-center max-w-3xl mx-auto mt-24 fade-in-up">
+            <h2 id="epilogue-title" class="text-2xl font-bold mb-6 text-[#005A9C]">感謝を込めて</h2>
+            <div class="space-y-6 text-md md:text-lg leading-relaxed bg-white p-10 rounded-lg shadow-sm border border-gray-200">
+                <div>
+                    <h3 id="epilogue-h1" class="font-bold mb-2 text-[#212529]">community_brisbaneの仲間たちへ</h3>
+                    <p id="epilogue-p1" class="text-[#495057]">一緒についてきてくれた仲間がいたから、ここまでこれた。</p>
+                </div>
+                <div>
+                    <h3 id="epilogue-h2" class="font-bold mb-2 text-[#212529]">1stワーホリで出会った、すべての友達へ</h3>
+                    <p id="epilogue-p2" class="text-[#495057]">出会ってくれてありがとう。この旅の「365日」を創ったのは、あなた。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bonus Section -->
+    <section id="bonus-content" class="py-20 bonus-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 id="bonus-title" class="text-3xl font-bold text-[#005A9C]">番外編</h2>
+                <p id="bonus-h1" class="text-lg text-gray-600 mt-2">community_brisbane 運営の裏側</p>
+            </div>
+            <div class="max-w-3xl mx-auto bg-white/70 backdrop-blur-sm p-8 rounded-xl shadow-lg fade-in-up" style="transition-delay: 150ms;">
+                <div id="accordion-container" class="space-y-3">
+                    <!-- Accordion items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="clear-reward" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4 text-center">
+            <div class="fade-in-up">
+                <h2 id="skills-title" class="text-3xl font-bold text-[#005A9C] mb-2">CLEAR REWARD: 獲得スキル</h2>
+                <p id="skills-subtitle" class="text-md text-gray-600 mb-12">このゲームを通して、僕は多くの武器を手に入れた。</p>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-lg fade-in-up" style="transition-delay: 150ms;">
+                <div id="skills-grid" class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                    <!-- Skills will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center py-10 bg-slate-50">
+        <div class="fade-in-up">
+            <!-- Instagram Links -->
+            <div class="flex justify-center items-center divide-x divide-gray-300 mb-6">
+                <a href="https://www.instagram.com/community_brisbane?igsh=MWxmeW1vZjRsdDZ4Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="px-6 group flex items-center space-x-3 text-gray-500 hover:text-gray-800 transition-colors">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <defs>
+                            <radialGradient id="insta-gradient" r="150%" cx="30%" cy="107.5%">
+                                <stop stop-color="#fdf497" offset="0" />
+                                <stop stop-color="#fdf497" offset="0.05" />
+                                <stop stop-color="#fd5949" offset="0.45" />
+                                <stop stop-color="#d6249f" offset="0.6" />
+                                <stop stop-color="#285AEB" offset="0.9" />
+                            </radialGradient>
+                        </defs>
+                        <path fill="url(#insta-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.441c-3.171 0-3.53.011-4.76.069-2.832.129-4.014 1.303-4.143 4.143-.058 1.23-.069 1.583-.069 4.76s.011 3.53.069 4.76c.129 2.832 1.311 4.014 4.143 4.143 1.23.058 1.583.069 4.76.069s3.53-.011 4.76-.069c2.832-.129 4.014-1.303 4.143-4.143.058-1.23.069-1.583.069-4.76s-.011-3.53-.069-4.76c-.129-2.832-1.311-4.014-4.143-4.143-1.23-.058-1.583-.069-4.76-.069zm0 4.122c-2.39 0-4.33 1.94-4.33 4.33s1.94 4.33 4.33 4.33 4.33-1.94 4.33-4.33-1.94-4.33-4.33-4.33zm0 7.222c-1.594 0-2.89-1.296-2.89-2.89s1.296-2.89 2.89-2.89 2.89 1.296 2.89 2.89-1.296 2.89-2.89 2.89zm4.965-7.857c-.786 0-1.425.64-1.425 1.425s.64 1.425 1.425 1.425 1.425-.64 1.425-1.425-.639-1.425-1.425-1.425z"/>
+                    </svg>
+                    <span class="font-semibold">community_brisbane</span>
+                </a>
+                <a href="https://www.instagram.com/days__count?igsh=MWtyNmducm55ZDU3Ng%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="px-6 group flex items-center space-x-3 text-gray-500 hover:text-gray-800 transition-colors">
+                     <svg width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="url(#insta-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.441c-3.171 0-3.53.011-4.76.069-2.832.129-4.014 1.303-4.143 4.143-.058 1.23-.069 1.583-.069 4.76s.011 3.53.069 4.76c.129 2.832 1.311 4.014 4.143 4.143 1.23.058 1.583.069 4.76.069s3.53-.011 4.76-.069c2.832-.129 4.014-1.303 4.143-4.143.058-1.23.069-1.583.069-4.76s-.011-3.53-.069-4.76c-.129-2.832-1.311-4.014-4.143-4.143-1.23-.058-1.583-.069-4.76-.069zm0 4.122c-2.39 0-4.33 1.94-4.33 4.33s1.94 4.33 4.33 4.33 4.33-1.94 4.33-4.33-1.94-4.33-4.33-4.33zm0 7.222c-1.594 0-2.89-1.296-2.89-2.89s1.296-2.89 2.89-2.89 2.89 1.296 2.89 2.89-1.296 2.89-2.89 2.89zm4.965-7.857c-.786 0-1.425.64-1.425 1.425s.64 1.425 1.425 1.425 1.425-.64 1.425-1.425-.639-1.425-1.425-1.425z"/>
+                    </svg>
+                    <span class="font-semibold">Taku</span>
+                </a>
+            </div>
+            <p class="text-xs text-gray-400">Version 5.0</p>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div id="storyModal" class="modal fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col transition-transform duration-300 transform scale-95" id="modalContent">
+            <!-- Image will be placed here by JS -->
+            <img id="modalImage" src="" alt="Story Image" class="w-full h-56 object-cover rounded-t-lg" onerror="this.style.display='none'">
+            <div class="p-6 md:p-8 flex-grow">
+                <h3 id="modalTitle" class="text-2xl font-bold mb-4 text-[#005A9C]"></h3>
+                <p id="modalBody" class="text-[#495057] leading-relaxed whitespace-pre-line"></p>
+            </div>
+            <div class="px-6 py-4 bg-gray-50 text-right border-t border-gray-200 sticky bottom-0">
+                <button id="modal-close-btn" onclick="closeModal()" class="px-6 py-2 bg-[#F47C20] text-white font-bold rounded-md hover:bg-[#d96812] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F47C20]">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to your external JavaScript file -->
+    <script src="script.js" defer></script>
+</body>
+</html> 
