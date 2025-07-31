@@ -81,19 +81,89 @@
 
     <main class="container mx-auto px-4 md:px-8 py-16">
         
-        <section id="introduction" class="text-center max-w-3xl mx-auto mb-20 fade-in-up">
-            <div class="intro-container relative overflow-hidden rounded-lg shadow-lg">
-                <!-- Background Image -->
-                <div class="intro-image">
-                    <img src="images/santa 169.jpg" alt="Taku's Story" class="w-full object-cover transition-transform duration-500">
-                </div>
-                
-                <!-- Overlay with Text -->
-                <div class="intro-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-400 flex items-end">
-                    <div class="intro-content p-6 text-white transform translate-y-4 transition-transform duration-400">
-                        <h2 id="intro-title" class="text-2xl font-bold mb-4 text-white"></h2>
-                        <p id="intro-body" class="text-md md:text-lg leading-relaxed text-white"></p>
+        <section id="introduction" class="mb-20 fade-in-up">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    
+                    <!-- Left Side: Semi-circular Rotating Menu -->
+                    <div class="semi-circle-container">
+                        <div class="semi-circle-menu" id="semi-circle-menu">
+                            <div class="chapter-button" data-chapter="prologue">
+                                <span>序章</span>
+                            </div>
+                            <div class="chapter-button" data-chapter="chapter1">
+                                <span>第1章</span>
+                            </div>
+                            <div class="chapter-button" data-chapter="chapter2">
+                                <span>第2章</span>
+                            </div>
+                            <div class="chapter-button" data-chapter="chapter3">
+                                <span>第3章</span>
+                            </div>
+                            <div class="chapter-button" data-chapter="chapter4">
+                                <span>第4章</span>
+                            </div>
+                            <div class="chapter-button" data-chapter="chapter5">
+                                <span>第5章</span>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <!-- Right Side: Content Display Area -->
+                    <div class="content-display-area">
+                        <h1 id="chapter-title" class="text-3xl font-bold text-[#005A9C] mb-8">序章</h1>
+                        
+                        <div class="content-cards">
+                            <div class="content-card" data-chapter="prologue">
+                                <div class="card-background"></div>
+                                <div class="card-overlay">
+                                    <h2 class="card-title" data-ja="冒険の始まり" data-en="The Adventure Begins">冒険の始まり</h2>
+                                    <p class="card-body" data-ja="大学院を休学し、オーストラリアへの道を選んだ日々。セブ島での語学留学を経て、未知の地への第一歩を踏み出しました。" data-en="Days of choosing to take a leave of absence from graduate school and head to Australia. After language study in Cebu, I took my first step into the unknown.">大学院を休学し、オーストラリアへの道を選んだ日々。セブ島での語学留学を経て、未知の地への第一歩を踏み出しました。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="content-card" data-chapter="chapter1">
+                                <div class="card-background"></div>
+                                <div class="card-overlay">
+                                    <h2 class="card-title" data-ja="ブリスベン、孤独とサバイバル" data-en="Brisbane, Solitude and Survival">ブリスベン、孤独とサバイバル</h2>
+                                    <p class="card-body" data-ja="片道航空券と小さな自信を胸に、ブリスベンへ。家なし、仕事なし、友達なしのサバイバル生活が始まりました。" data-en="With a one-way ticket and a little confidence, I headed to Brisbane. A survival life with no home, no job, and no friends began.">片道航空券と小さな自信を胸に、ブリスベンへ。家なし、仕事なし、友達なしのサバイバル生活が始まりました。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="content-card" data-chapter="chapter2">
+                                <div class="card-background"></div>
+                                <div class="card-overlay">
+                                    <h2 class="card-title" data-ja="僕らの&quot;居場所&quot;ができた日" data-en="The Day Our &quot;Place&quot; Was Born">僕らの"居場所"ができた日</h2>
+                                    <p class="card-body" data-ja="「ないなら、作ればいい」— community_brisbaneの誕生。おにぎりイベントで新たな仲間との出会いが。" data-en="&quot;If it doesn't exist, just make it&quot; — The birth of community_brisbane. New encounters with friends through the onigiri event.">「ないなら、作ればいい」— community_brisbaneの誕生。おにぎりイベントで新たな仲間との出会いが。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="content-card" data-chapter="chapter3">
+                                <div class="card-background"></div>
+                                <div class="card-overlay">
+                                    <h2 class="card-title" data-ja="出会い、葛藤、そして大きな決断" data-en="Encounters, Conflicts, and a Big Decision">出会い、葛藤、そして大きな決断</h2>
+                                    <p class="card-body" data-ja="最高の相棒との出会い、クリスマス会の成功、そして休学延長の決断。仲間との絆が深まる日々。" data-en="Meeting the perfect partner, the success of the Christmas party, and the decision to extend my leave. Days of deepening bonds with friends.">最高の相棒との出会い、クリスマス会の成功、そして休学延長の決断。仲間との絆が深まる日々。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="content-card" data-chapter="chapter4">
+                                <div class="card-background"></div>
+                                <div class="card-overlay">
+                                    <h2 class="card-title" data-ja="ロードトリップ" data-en="Road Trip">ロードトリップ</h2>
+                                    <p class="card-body" data-ja="8週間のオーストラリア大陸横断。ウルル、シドニー、ダーウィン、ケアンズ。大自然の中で見つけた次の一歩。" data-en="8-week journey across the Australian continent. Uluru, Sydney, Darwin, Cairns. The next step found in the great outdoors.">8週間のオーストラリア大陸横断。ウルル、シドニー、ダーウィン、ケアンズ。大自然の中で見つけた次の一歩。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="content-card" data-chapter="chapter5">
+                                <div class="card-background"></div>
+                                <div class="card-overlay">
+                                    <h2 class="card-title" data-ja="365日目の約束" data-en="The Promise on Day 365">365日目の約束</h2>
+                                    <p class="card-body" data-ja="ワーホリ終了、でも物語は続く。新たな相棒と共に、community_brisbaneの第二章が始まります。" data-en="Working holiday ends, but the story continues. With a new partner, Chapter 2 of community_brisbane begins.">ワーホリ終了、でも物語は続く。新たな相棒と共に、community_brisbaneの第二章が始まります。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </section>

@@ -122,6 +122,168 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Introduction Section - Semi-circular Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const semiCircleMenu = document.getElementById('semi-circle-menu');
+    const chapterButtons = document.querySelectorAll('.chapter-button');
+    const contentCards = document.querySelectorAll('.content-card');
+    const chapterTitle = document.getElementById('chapter-title');
+    
+    // Chapter data for titles and content
+    const chapterData = {
+        ja: {
+            prologue: {
+                title: '序章',
+                content: '冒険の始まり'
+            },
+            chapter1: {
+                title: '第1章',
+                content: 'ブリスベン、孤独とサバイバル'
+            },
+            chapter2: {
+                title: '第2章',
+                content: '僕らの"居場所"ができた日'
+            },
+            chapter3: {
+                title: '第3章',
+                content: '出会い、葛藤、そして大きな決断'
+            },
+            chapter4: {
+                title: '第4章',
+                content: 'ロードトリップ'
+            },
+            chapter5: {
+                title: '第5章',
+                content: '365日目の約束'
+            }
+        },
+        en: {
+            prologue: {
+                title: 'Prologue',
+                content: 'The Adventure Begins'
+            },
+            chapter1: {
+                title: 'Chapter 1',
+                content: 'Brisbane, Solitude and Survival'
+            },
+            chapter2: {
+                title: 'Chapter 2',
+                content: 'The Day Our "Place" Was Born'
+            },
+            chapter3: {
+                title: 'Chapter 3',
+                content: 'Encounters, Conflicts, and a Big Decision'
+            },
+            chapter4: {
+                title: 'Chapter 4',
+                content: 'Road Trip'
+            },
+            chapter5: {
+                title: 'Chapter 5',
+                content: 'The Promise on Day 365'
+            }
+        }
+    };
+    
+    // Initialize with prologue active
+    let currentChapter = 'prologue';
+    activateChapter(currentChapter);
+    
+    // Add click event listeners to chapter buttons
+    chapterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const chapter = this.getAttribute('data-chapter');
+            if (chapter !== currentChapter) {
+                currentChapter = chapter;
+                activateChapter(chapter);
+            }
+        });
+    });
+    
+    function activateChapter(chapter) {
+        // Update chapter buttons
+        chapterButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-chapter') === chapter) {
+                btn.classList.add('active');
+            }
+        });
+        
+        // Update chapter title
+        if (chapterData[currentLang] && chapterData[currentLang][chapter]) {
+            chapterTitle.textContent = chapterData[currentLang][chapter].title;
+        }
+        
+        // Update content cards
+        contentCards.forEach(card => {
+            card.classList.remove('active');
+            if (card.getAttribute('data-chapter') === chapter) {
+                card.classList.add('active');
+            }
+        });
+        
+        // Rotate semi-circle menu to center the active button
+        rotateMenu(chapter);
+    }
+    
+    function rotateMenu(chapter) {
+        const rotationMap = {
+            'prologue': 0,
+            'chapter1': -30,
+            'chapter2': -60,
+            'chapter3': 30,
+            'chapter4': 60,
+            'chapter5': 90
+        };
+        
+        const rotation = rotationMap[chapter] || 0;
+        semiCircleMenu.style.transform = `rotate(${rotation}deg)`;
+        
+        // Counter-rotate the text to keep it horizontal
+        chapterButtons.forEach(btn => {
+            const btnChapter = btn.getAttribute('data-chapter');
+            const btnRotation = rotationMap[btnChapter] || 0;
+            const span = btn.querySelector('span');
+            span.style.transform = `rotate(${-rotation}deg)`;
+        });
+    }
+    
+    // Update chapter buttons text when language changes
+    function updateChapterButtons() {
+        const buttonTexts = {
+            ja: ['序章', '第1章', '第2章', '第3章', '第4章', '第5章'],
+            en: ['Prologue', 'Ch.1', 'Ch.2', 'Ch.3', 'Ch.4', 'Ch.5']
+        };
+        
+        chapterButtons.forEach((btn, index) => {
+            const span = btn.querySelector('span');
+            span.textContent = buttonTexts[currentLang][index];
+        });
+        
+        // Update current chapter title
+        if (currentChapter && chapterData[currentLang] && chapterData[currentLang][currentChapter]) {
+            chapterTitle.textContent = chapterData[currentLang][currentChapter].title;
+        }
+        
+        // Update content card text
+        contentCards.forEach(card => {
+            const title = card.querySelector('.card-title');
+            const body = card.querySelector('.card-body');
+            
+            if (title && title.dataset[currentLang]) {
+                title.textContent = title.dataset[currentLang];
+            }
+            
+            if (body && body.dataset[currentLang]) {
+                body.textContent = body.dataset[currentLang];
+            }
+        });
+    }
+    
+    // Make updateChapterButtons available globally
+    window.updateChapterButtons = updateChapterButtons;
+});
+
 // Function to render all dynamic content based on the current language
 function renderContent() {
     const T = translations[currentLang];
@@ -137,8 +299,6 @@ function renderContent() {
     document.title = T.pageTitle;
     document.getElementById('lang-toggle').textContent = T.langToggle;
     document.getElementById('header-subtitle').textContent = T.headerSubtitle;
-    document.getElementById('intro-title').textContent = T.introTitle;
-    document.getElementById('intro-body').textContent = T.introBody;
     document.getElementById('epilogue-title').textContent = T.epilogueTitle;
     document.getElementById('epilogue-h1').textContent = T.epilogueH1;
     document.getElementById('epilogue-p1').textContent = T.epilogueP1;
@@ -217,6 +377,11 @@ function renderContent() {
             }
         });
     });
+
+    // Update introduction section chapter buttons and title
+    if (window.updateChapterButtons) {
+        window.updateChapterButtons();
+    }
 
     // Clear and re-render the skills grid
     const skillsGrid = document.getElementById('skills-grid');
