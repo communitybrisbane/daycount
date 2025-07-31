@@ -180,14 +180,14 @@ function initCircularToc() {
     const container = document.querySelector('.circular-items-container');
     if (!container) return;
     
-    const radius = window.innerWidth <= 768 ? 120 : 180;
+    const radius = window.innerWidth <= 640 ? 140 : window.innerWidth <= 768 ? 200 : 280;
     const centerX = container.offsetWidth / 2;
     const centerY = container.offsetHeight / 2;
     
     circularTocData.forEach((item, index) => {
         const angle = (index * 60) * (Math.PI / 180); // 6 items, 60 degrees each
-        const x = centerX + radius * Math.cos(angle) - 60; // 60 is half of item width
-        const y = centerY + radius * Math.sin(angle) - 60; // 60 is half of item height
+        const x = centerX + radius * Math.cos(angle) - 80; // 80 is half of item width (160/2)
+        const y = centerY + radius * Math.sin(angle) - 80; // 80 is half of item height (160/2)
         
         const itemElement = document.createElement('div');
         itemElement.className = 'circular-item';
@@ -223,18 +223,25 @@ function handleCircularItemClick(index) {
     // Update central display
     const selectedItem = circularTocData[index];
     centralContent.innerHTML = `
-        <div class="circular-item-number" style="color: #005A9C; margin-bottom: 8px;">${selectedItem.number}</div>
-        <div class="circular-item-title" style="color: #005A9C; margin-bottom: 12px;">${selectedItem.title}</div>
-        <ul style="text-align: left; font-size: 0.8rem; color: #6b7280;">
-            ${selectedItem.details.map(detail => `<li style="margin-bottom: 4px;">• ${detail}</li>`).join('')}
+        <div class="circular-item-number" style="color: #005A9C; margin-bottom: 8px; font-size: 2rem;">${selectedItem.number}</div>
+        <div class="circular-item-title" style="color: #005A9C; margin-bottom: 12px; font-size: 1.2rem;">${selectedItem.title}</div>
+        <ul style="text-align: left; font-size: 0.9rem; color: #6b7280; line-height: 1.6;">
+            ${selectedItem.details.map(detail => `<li style="margin-bottom: 6px;">• ${detail}</li>`).join('')}
         </ul>
     `;
     
     // Rotate container to bring clicked item to top
-    if (window.innerWidth > 640) {
-        const rotation = -index * 60; // 60 degrees per item
-        container.style.transform = `rotate(${rotation}deg)`;
-    }
+    const rotation = -index * 60; // 60 degrees per item
+    container.style.transform = `rotate(${rotation}deg)`;
+    
+    // Counter-rotate the text elements to keep them readable
+    items.forEach((item, itemIndex) => {
+        const textElements = item.querySelectorAll('.circular-item-number, .circular-item-title');
+        const counterRotation = rotation; // Counter-rotate to keep text upright
+        textElements.forEach(textElement => {
+            textElement.style.transform = `rotate(${counterRotation}deg)`;
+        });
+    });
 }
 
 // Initialize when DOM is loaded

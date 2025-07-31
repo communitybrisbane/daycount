@@ -687,7 +687,7 @@ html {
 .circular-toc-container {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 800px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -696,8 +696,8 @@ html {
 
 .central-display {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
     background: white;
     border-radius: 50%;
     display: flex;
@@ -710,18 +710,23 @@ html {
 
 .central-content {
     text-align: center;
-    padding: 20px;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .central-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #005A9C;
     margin-bottom: 8px;
 }
 
 .central-description {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #6b7280;
     line-height: 1.4;
 }
@@ -735,8 +740,8 @@ html {
 
 .circular-item {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     cursor: pointer;
     overflow: hidden;
@@ -792,10 +797,11 @@ html {
 }
 
 .circular-item-number {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: #005A9C;
     margin-bottom: 4px;
+    transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .circular-item.active .circular-item-number {
@@ -803,11 +809,12 @@ html {
 }
 
 .circular-item-title {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #374151;
     text-align: center;
     line-height: 1.2;
+    transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .circular-item.active .circular-item-title {
@@ -817,42 +824,56 @@ html {
 /* Responsive Design */
 @media (max-width: 768px) {
     .circular-toc-container {
-        height: 400px;
+        height: 600px;
     }
     
     .central-display {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
     }
     
     .central-title {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
     
     .central-description {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     
     .circular-item {
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
     }
     
     .circular-item-number {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     
     .circular-item-title {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 640px) {
     .circular-toc-container {
-        height: 350px;
+        height: 500px;
     }
     
-    .circular-items-container {
-        transform: none !important;
+    .central-display {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .circular-item {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .circular-item-number {
+        font-size: 1.8rem;
+    }
+    
+    .circular-item-title {
+        font-size: 0.7rem;
     }
 } 
