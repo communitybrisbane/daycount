@@ -203,6 +203,14 @@ function initCircularToc() {
             </div>
         `;
         
+        // Set initial text rotation to keep text upright
+        const textElements = itemElement.querySelectorAll('.circular-item-number, .circular-item-title');
+        const itemAngle = (index * 60) * (Math.PI / 180);
+        const initialRotation = -(itemAngle * 180 / Math.PI);
+        textElements.forEach(textElement => {
+            textElement.style.transform = `rotate(${initialRotation}deg)`;
+        });
+        
         itemElement.addEventListener('click', () => handleCircularItemClick(index));
         container.appendChild(itemElement);
     });
@@ -234,10 +242,11 @@ function handleCircularItemClick(index) {
     const rotation = -index * 60; // 60 degrees per item
     container.style.transform = `rotate(${rotation}deg)`;
     
-    // Counter-rotate the text elements to keep them readable
+    // Counter-rotate each item's text elements individually to keep them readable
     items.forEach((item, itemIndex) => {
         const textElements = item.querySelectorAll('.circular-item-number, .circular-item-title');
-        const counterRotation = rotation; // Counter-rotate to keep text upright
+        const itemAngle = (itemIndex * 60) * (Math.PI / 180); // Current angle of this item
+        const counterRotation = -rotation - (itemAngle * 180 / Math.PI); // Counter-rotate to keep text upright
         textElements.forEach(textElement => {
             textElement.style.transform = `rotate(${counterRotation}deg)`;
         });
