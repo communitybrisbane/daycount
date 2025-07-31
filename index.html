@@ -49,28 +49,6 @@
             <div class="film-frame" style="background-image: url('images/bbqniku.jpg')"></div>
             <div class="film-frame" style="background-image: url('images/koala.jpg')"></div>
             <div class="film-frame" style="background-image: url('images/urulu.jpg')"></div>
-            <!-- Duplicate set for seamless loop -->
-            <div class="film-frame" style="background-image: url('images/beach.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/bench.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/castle.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/fusya7.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/simonada.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/takusenaka.jpg')"></div>
-            <div class="film-frame" style="background-image: url('images/takuroadtrip.jpg')"></div>
-            <div class="film-frame" style="background-image: url('images/bbqniku.jpg')"></div>
-            <div class="film-frame" style="background-image: url('images/koala.jpg')"></div>
-            <div class="film-frame" style="background-image: url('images/urulu.jpg')"></div>
-            <!-- Duplicate set for seamless loop -->
-            <div class="film-frame" style="background-image: url('images/beach.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/bench.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/castle.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/fusya7.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/simonada.JPEG')"></div>
-            <div class="film-frame" style="background-image: url('images/takusenaka.jpg')"></div>
-            <div class="film-frame" style="background-image: url('images/takuroadtrip.jpg')"></div>
-            <div class="film-frame" style="background-image: url('images/bbqniku.jpg')"></div>
-            <div class="film-frame" style="background-image: url('images/koala.jpg')"></div>
-            <div class="film-frame" style="background-image: url('images/urulu.jpg')"></div>
         </div>
         
         <div class="fade-in-up visible">
@@ -81,6 +59,7 @@
 
     <main class="container mx-auto px-4 md:px-8 py-16">
         
+        <!-- About This Section -->
         <section id="about-this" class="text-center max-w-4xl mx-auto mb-20 fade-in-up">
             <div class="about-container relative overflow-hidden rounded-lg shadow-lg bg-white">
                 <!-- Background Image -->
@@ -156,6 +135,7 @@
             </div>
         </section>
 
+        <!-- Story Timeline Section -->
         <section id="story-timeline">
             <div class="relative max-w-3xl mx-auto">
                 <div class="timeline-path"></div>
@@ -165,6 +145,7 @@
             </div>
         </section>
         
+        <!-- Epilogue Section -->
         <section id="epilogue" class="text-center max-w-3xl mx-auto mt-24 fade-in-up">
             <h2 id="epilogue-title" class="text-2xl font-bold mb-6 text-[#005A9C]">感謝を込めて</h2>
             <div class="space-y-6 text-md md:text-lg leading-relaxed bg-white p-10 rounded-lg shadow-sm border border-gray-200">
@@ -252,7 +233,9 @@
                 <p id="modalBody" class="text-[#495057] leading-relaxed whitespace-pre-line"></p>
             </div>
             <div class="px-6 py-4 bg-gray-50 text-right border-t border-gray-200 sticky bottom-0">
-                <button id="modal-close-btn" onclick="closeModal()" class="px-6 py-2 bg-[#F47C20] text-white font-bold rounded-md hover:bg-[#d96812] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F47C20]">閉じる</button>
+                <button id="modal-close-btn" onclick="closeModal()" class="px-6 py-2 bg-[#F47C20] text-white font-bold rounded-md hover:bg-[#d96812] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F47C20]">
+                    <span id="modal-close-text">閉じる</span>
+                </button>
             </div>
         </div>
     </div>

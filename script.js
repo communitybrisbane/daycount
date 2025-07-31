@@ -301,7 +301,12 @@ function renderContent() {
     document.getElementById('bonus-h1').textContent = T.bonusH1;
     document.getElementById('skills-title').textContent = T.skillsTitle;
     document.getElementById('skills-subtitle').textContent = T.skillsSubtitle;
-    document.getElementById('modal-close-btn').textContent = T.modalClose;
+    
+    // Update modal close button text
+    const modalCloseText = document.getElementById('modal-close-text');
+    if (modalCloseText) {
+        modalCloseText.textContent = T.modalClose;
+    }
 
     // Clear and re-render the story timeline
     const timelineContainer = document.getElementById('timeline-content');
