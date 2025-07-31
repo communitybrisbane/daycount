@@ -645,7 +645,22 @@ html {
 /* Introduction Section Hover Effects */
 .intro-container {
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    max-width: 100%;
+}
+
+.intro-image {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.intro-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .intro-container:hover .intro-image img {
@@ -661,14 +676,9 @@ html {
 }
 
 .intro-overlay {
-    transition: opacity 0.4s ease;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .intro-content {
-    transition: transform 0.4s ease;
-}
-
-/* Ensure smooth transitions */
-.intro-image img {
-    transition: transform 0.4s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 } 
