@@ -641,3 +641,34 @@ html {
         font-size: 1.25rem !important;
     }
 } 
+
+/* Introduction Section Hover Effects */
+.intro-container {
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.intro-container:hover .intro-image img {
+    transform: scale(1.05);
+}
+
+.intro-container:hover .intro-overlay {
+    opacity: 1;
+}
+
+.intro-container:hover .intro-content {
+    transform: translateY(0);
+}
+
+.intro-overlay {
+    transition: opacity 0.4s ease;
+}
+
+.intro-content {
+    transition: transform 0.4s ease;
+}
+
+/* Ensure smooth transitions */
+.intro-image img {
+    transition: transform 0.4s ease;
+} 
