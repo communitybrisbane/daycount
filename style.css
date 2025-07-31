@@ -466,8 +466,8 @@ html {
 .timeline-chapter {
     position: relative;
     overflow: hidden;
-    border: 2px solid transparent;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .timeline-chapter::before {
@@ -477,18 +477,24 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
+    background: linear-gradient(135deg, rgba(0, 90, 156, 0.05) 0%, rgba(244, 124, 32, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
 .timeline-chapter:hover::before {
-    transform: translateX(100%);
+    opacity: 1;
 }
 
 .timeline-chapter:hover {
-    border-color: rgba(0, 90, 156, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-chapter > * {
+    position: relative;
+    z-index: 2;
 }
 
 .chapter-number {
@@ -498,7 +504,7 @@ html {
 
 .timeline-chapter:hover .chapter-number {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 90, 156, 0.3);
 }
 
 .timeline-chapter a {
@@ -506,6 +512,7 @@ html {
     text-decoration: none;
     display: block;
     padding: 2px 0;
+    transition: all 0.3s ease;
 }
 
 .timeline-chapter a::after {
@@ -523,6 +530,105 @@ html {
     width: 100%;
 }
 
+.timeline-chapter a:hover {
+    transform: translateX(4px);
+}
+
+/* Chapter-specific hover images */
+.timeline-chapter:nth-child(1)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/beach.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/bench.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(3)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/castle.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(4)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/fusya7.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(5)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/simonada.JPEG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:nth-child(6)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/urulu.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.timeline-chapter:hover::after {
+    opacity: 0.1;
+}
+
 /* Responsive adjustments for timeline summary */
 @media (max-width: 768px) {
     .timeline-chapter {
@@ -530,8 +636,8 @@ html {
     }
     
     .chapter-number {
-        width: 3rem !important;
-        height: 3rem !important;
-        font-size: 1.5rem !important;
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        font-size: 1.25rem !important;
     }
 } 
