@@ -534,99 +534,59 @@ html {
     transform: translateX(4px);
 }
 
-/* Chapter-specific hover images */
-.timeline-chapter:nth-child(1)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+/* Chapter-specific background images */
+.timeline-chapter:nth-child(1) {
     background-image: url('images/beach.JPEG');
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
 }
 
-.timeline-chapter:nth-child(2)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.timeline-chapter:nth-child(2) {
     background-image: url('images/bench.JPEG');
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
 }
 
-.timeline-chapter:nth-child(3)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.timeline-chapter:nth-child(3) {
     background-image: url('images/castle.JPEG');
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
 }
 
-.timeline-chapter:nth-child(4)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.timeline-chapter:nth-child(4) {
     background-image: url('images/fusya7.JPEG');
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
 }
 
-.timeline-chapter:nth-child(5)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.timeline-chapter:nth-child(5) {
     background-image: url('images/simonada.JPEG');
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
 }
 
-.timeline-chapter:nth-child(6)::after {
+.timeline-chapter:nth-child(6) {
+    background-image: url('images/urulu.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Text overlay for hover effect */
+.timeline-chapter::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('images/urulu.jpg');
-    background-size: cover;
-    background-position: center;
+    background: rgba(0, 0, 0, 0.8);
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 0;
+    z-index: 1;
 }
 
 .timeline-chapter:hover::after {
-    opacity: 0.1;
+    opacity: 1;
 }
 
 /* Responsive adjustments for timeline summary */
