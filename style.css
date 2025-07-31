@@ -642,45 +642,111 @@ html {
     }
 } 
 
-/* Introduction Section Hover Effects */
-.intro-container {
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 100%;
-    max-width: 100%;
-}
-
-.intro-image {
-    width: 100%;
-    height: auto;
+/* About This Section Styles */
+.about-container {
+    position: relative;
+    min-height: 500px;
     overflow: hidden;
+    transition: all 0.5s ease;
 }
 
-.intro-image img {
+.about-container:hover .about-image {
+    opacity: 0;
+    transform: scale(1.1);
+}
+
+.about-container:hover .background-text {
+    opacity: 0;
+}
+
+.about-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    transition: all 0.5s ease;
 }
 
-.intro-container:hover .intro-image img {
+.background-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.content-overlay {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 2rem;
+    transition: all 0.5s ease;
+}
+
+.text-content {
+    transition: all 0.5s ease;
+}
+
+.about-container:hover .text-content {
     transform: scale(1.05);
 }
 
-.intro-container:hover .intro-overlay {
-    opacity: 1;
+.main-title {
+    transition: all 0.5s ease;
 }
 
-.intro-container:hover .intro-content {
-    transform: translateY(0);
+.subtitle {
+    transition: all 0.5s ease;
 }
 
-.intro-overlay {
-    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        min-height: 400px;
+    }
+    
+    .background-text {
+        font-size: 6rem;
+    }
+    
+    .content-overlay {
+        padding: 3rem 1.5rem;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
 }
 
-.intro-content {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+@media (max-width: 640px) {
+    .about-container {
+        min-height: 350px;
+    }
+    
+    .background-text {
+        font-size: 4rem;
+    }
+    
+    .content-overlay {
+        padding: 2rem 1rem;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
 } 
 
 /* Circular Table of Contents Styles */
