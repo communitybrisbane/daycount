@@ -682,3 +682,177 @@ html {
 .intro-content {
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 } 
+
+/* Circular Table of Contents Styles */
+.circular-toc-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.central-display {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    border: 2px solid #e5e7eb;
+}
+
+.central-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.central-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #005A9C;
+    margin-bottom: 8px;
+}
+
+.central-description {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+.circular-items-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.circular-item {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s ease;
+    border: 3px solid transparent;
+}
+
+.circular-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.circular-item.active {
+    border-color: #005A9C;
+    transform: scale(1.15);
+    box-shadow: 0 12px 40px rgba(0, 90, 156, 0.3);
+}
+
+.circular-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.circular-item:hover .circular-item-image {
+    transform: scale(1.1);
+}
+
+.circular-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.circular-item:hover .circular-item-overlay {
+    opacity: 1;
+}
+
+.circular-item.active .circular-item-overlay {
+    background: #005A9C;
+    opacity: 1;
+}
+
+.circular-item-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #005A9C;
+    margin-bottom: 4px;
+}
+
+.circular-item.active .circular-item-number {
+    color: white;
+}
+
+.circular-item-title {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #374151;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.circular-item.active .circular-item-title {
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .circular-toc-container {
+        height: 400px;
+    }
+    
+    .central-display {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .central-title {
+        font-size: 1rem;
+    }
+    
+    .central-description {
+        font-size: 0.8rem;
+    }
+    
+    .circular-item {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .circular-item-number {
+        font-size: 1.5rem;
+    }
+    
+    .circular-item-title {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .circular-toc-container {
+        height: 350px;
+    }
+    
+    .circular-items-container {
+        transform: none !important;
+    }
+} 

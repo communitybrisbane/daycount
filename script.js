@@ -111,8 +111,134 @@ const translations = {
     }
 };
 
-// This function runs when the page content is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Circular Table of Contents Data
+const circularTocData = [
+    {
+        number: "序",
+        title: "冒険の始まり",
+        image: "images/beach.JPEG",
+        details: [
+            "大学院を休学",
+            "セブ島での語学留学", 
+            "オーストラリアへの決意"
+        ]
+    },
+    {
+        number: "1",
+        title: "孤独とサバイバル",
+        image: "images/bench.JPEG",
+        details: [
+            "ブリスベン到着",
+            "生活インフラ整備",
+            "友達作りへの挑戦"
+        ]
+    },
+    {
+        number: "2", 
+        title: "居場所の創造",
+        image: "images/castle.JPEG",
+        details: [
+            "community_brisbane誕生",
+            "おにぎりイベント",
+            "経済的自立"
+        ]
+    },
+    {
+        number: "3",
+        title: "仲間との絆", 
+        image: "images/fusya7.JPEG",
+        details: [
+            "相棒との出会い",
+            "クリスマス会・BBQ",
+            "休学延長の決断"
+        ]
+    },
+    {
+        number: "4",
+        title: "ロードトリップ",
+        image: "images/simonada.JPEG", 
+        details: [
+            "8週間の旅",
+            "ウルル・シドニー",
+            "次の一歩の発見"
+        ]
+    },
+    {
+        number: "5",
+        title: "365日目の約束",
+        image: "images/urulu.jpg",
+        details: [
+            "新たな相棒",
+            "ワーホリ終了", 
+            "新たなスタート"
+        ]
+    }
+];
+
+// Initialize Circular Table of Contents
+function initCircularToc() {
+    const container = document.querySelector('.circular-items-container');
+    if (!container) return;
+    
+    const radius = window.innerWidth <= 768 ? 120 : 180;
+    const centerX = container.offsetWidth / 2;
+    const centerY = container.offsetHeight / 2;
+    
+    circularTocData.forEach((item, index) => {
+        const angle = (index * 60) * (Math.PI / 180); // 6 items, 60 degrees each
+        const x = centerX + radius * Math.cos(angle) - 60; // 60 is half of item width
+        const y = centerY + radius * Math.sin(angle) - 60; // 60 is half of item height
+        
+        const itemElement = document.createElement('div');
+        itemElement.className = 'circular-item';
+        itemElement.style.left = x + 'px';
+        itemElement.style.top = y + 'px';
+        itemElement.dataset.index = index;
+        
+        itemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.title}" class="circular-item-image">
+            <div class="circular-item-overlay">
+                <div class="circular-item-number">${item.number}</div>
+                <div class="circular-item-title">${item.title}</div>
+            </div>
+        `;
+        
+        itemElement.addEventListener('click', () => handleCircularItemClick(index));
+        container.appendChild(itemElement);
+    });
+}
+
+// Handle Circular Item Click
+function handleCircularItemClick(index) {
+    const items = document.querySelectorAll('.circular-item');
+    const centralContent = document.querySelector('.central-content');
+    const container = document.querySelector('.circular-items-container');
+    
+    // Remove active class from all items
+    items.forEach(item => item.classList.remove('active'));
+    
+    // Add active class to clicked item
+    items[index].classList.add('active');
+    
+    // Update central display
+    const selectedItem = circularTocData[index];
+    centralContent.innerHTML = `
+        <div class="circular-item-number" style="color: #005A9C; margin-bottom: 8px;">${selectedItem.number}</div>
+        <div class="circular-item-title" style="color: #005A9C; margin-bottom: 12px;">${selectedItem.title}</div>
+        <ul style="text-align: left; font-size: 0.8rem; color: #6b7280;">
+            ${selectedItem.details.map(detail => `<li style="margin-bottom: 4px;">• ${detail}</li>`).join('')}
+        </ul>
+    `;
+    
+    // Rotate container to bring clicked item to top
+    if (window.innerWidth > 640) {
+        const rotation = -index * 60; // 60 degrees per item
+        container.style.transform = `rotate(${rotation}deg)`;
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
     renderContent(); // Initial render in Japanese
     
     const langToggleButton = document.getElementById('lang-toggle');
@@ -120,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLang = currentLang === 'ja' ? 'en' : 'ja';
         renderContent();
     });
+    initCircularToc();
 });
 
 // Function to render all dynamic content based on the current language
