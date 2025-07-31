@@ -35,7 +35,7 @@ header {
     width: 300px;
     height: 100%;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
     opacity: 1;
     border-right: 2px solid rgba(255, 255, 255, 0.2);
@@ -81,7 +81,7 @@ header {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-1500px);
+        transform: translateX(-3000px);
     }
 }
 
