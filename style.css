@@ -81,7 +81,7 @@ header {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-1200px);
+        transform: translateX(-1500px);
     }
 }
 
