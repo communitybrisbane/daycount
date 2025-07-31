@@ -111,146 +111,152 @@ const translations = {
     }
 };
 
-// Circular Table of Contents Data
-const circularTocData = [
-    {
-        number: "序",
-        title: "冒険の始まり",
-        image: "images/beach.JPEG",
-        details: [
-            "大学院を休学",
-            "セブ島での語学留学", 
-            "オーストラリアへの決意"
-        ]
-    },
-    {
-        number: "1",
-        title: "孤独とサバイバル",
-        image: "images/bench.JPEG",
-        details: [
-            "ブリスベン到着",
-            "生活インフラ整備",
-            "友達作りへの挑戦"
-        ]
-    },
-    {
-        number: "2", 
-        title: "居場所の創造",
-        image: "images/castle.JPEG",
-        details: [
-            "community_brisbane誕生",
-            "おにぎりイベント",
-            "経済的自立"
-        ]
-    },
-    {
-        number: "3",
-        title: "仲間との絆", 
-        image: "images/fusya7.JPEG",
-        details: [
-            "相棒との出会い",
-            "クリスマス会・BBQ",
-            "休学延長の決断"
-        ]
-    },
-    {
-        number: "4",
-        title: "ロードトリップ",
-        image: "images/simonada.JPEG", 
-        details: [
-            "8週間の旅",
-            "ウルル・シドニー",
-            "次の一歩の発見"
-        ]
-    },
-    {
-        number: "5",
-        title: "365日目の約束",
-        image: "images/urulu.jpg",
-        details: [
-            "新たな相棒",
-            "ワーホリ終了", 
-            "新たなスタート"
-        ]
+// Vertical Table of Contents Drag Functionality
+function initVerticalToc() {
+    const tocSections = document.querySelectorAll('.toc-section');
+    const tocContainer = document.querySelector('.toc-sections');
+    
+    if (!tocContainer) return;
+    
+    let draggedElement = null;
+    let draggedIndex = null;
+    let originalIndex = null;
+    
+    tocSections.forEach((section, index) => {
+        section.addEventListener('mousedown', handleMouseDown);
+        section.addEventListener('touchstart', handleTouchStart);
+    });
+    
+    function handleMouseDown(e) {
+        e.preventDefault();
+        startDrag(e, this);
     }
-];
-
-// Initialize Circular Table of Contents
-function initCircularToc() {
-    const container = document.querySelector('.circular-items-container');
-    if (!container) return;
     
-    const radius = window.innerWidth <= 640 ? 140 : window.innerWidth <= 768 ? 200 : 280;
-    const centerX = container.offsetWidth / 2;
-    const centerY = container.offsetHeight / 2;
+    function handleTouchStart(e) {
+        e.preventDefault();
+        startDrag(e.touches[0], this);
+    }
     
-    circularTocData.forEach((item, index) => {
-        const angle = (index * 60) * (Math.PI / 180); // 6 items, 60 degrees each
-        const x = centerX + radius * Math.cos(angle) - 80; // 80 is half of item width (160/2)
-        const y = centerY + radius * Math.sin(angle) - 80; // 80 is half of item height (160/2)
+    function startDrag(e, element) {
+        draggedElement = element;
+        originalIndex = parseInt(element.dataset.index);
+        draggedIndex = originalIndex;
         
-        const itemElement = document.createElement('div');
-        itemElement.className = 'circular-item';
-        itemElement.style.left = x + 'px';
-        itemElement.style.top = y + 'px';
-        itemElement.dataset.index = index;
+        element.classList.add('dragging');
         
-        itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.title}" class="circular-item-image">
-            <div class="circular-item-overlay">
-                <div class="circular-item-number">${item.number}</div>
-                <div class="circular-item-title">${item.title}</div>
-            </div>
-        `;
+        // Set initial position
+        const rect = element.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const offsetY = e.clientY - rect.top;
         
-        // Set initial text rotation to keep text upright
-        const textElements = itemElement.querySelectorAll('.circular-item-number, .circular-item-title');
-        const itemAngle = (index * 60) * (Math.PI / 180);
-        const initialRotation = -(itemAngle * 180 / Math.PI);
-        textElements.forEach(textElement => {
-            textElement.style.transform = `rotate(${initialRotation}deg)`;
+        element.style.position = 'fixed';
+        element.style.zIndex = '1000';
+        element.style.width = rect.width + 'px';
+        element.style.pointerEvents = 'none';
+        
+        function handleMouseMove(e) {
+            if (!draggedElement) return;
+            
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+            
+            draggedElement.style.left = x + 'px';
+            draggedElement.style.top = y + 'px';
+            
+            // Find the element under the cursor
+            const elements = Array.from(tocSections);
+            const currentIndex = elements.indexOf(draggedElement);
+            
+            elements.forEach((el, index) => {
+                if (el !== draggedElement) {
+                    const elRect = el.getBoundingClientRect();
+                    const elCenter = elRect.top + elRect.height / 2;
+                    const dragCenter = y + rect.height / 2;
+                    
+                    if (Math.abs(dragCenter - elCenter) < elRect.height / 2) {
+                        // Swap positions
+                        if (index !== currentIndex) {
+                            swapElements(currentIndex, index);
+                            draggedIndex = index;
+                        }
+                    }
+                }
+            });
+        }
+        
+        function handleMouseUp() {
+            if (draggedElement) {
+                finishDrag();
+            }
+        }
+        
+        function handleTouchMove(e) {
+            handleMouseMove(e.touches[0]);
+        }
+        
+        function handleTouchEnd() {
+            handleMouseUp();
+        }
+        
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', handleTouchEnd);
+    }
+    
+    function swapElements(fromIndex, toIndex) {
+        const elements = Array.from(tocSections);
+        const fromElement = elements[fromIndex];
+        const toElement = elements[toIndex];
+        
+        if (fromElement && toElement) {
+            // Update data-index attributes
+            fromElement.dataset.index = toIndex;
+            toElement.dataset.index = fromIndex;
+            
+            // Swap in DOM
+            if (fromIndex < toIndex) {
+                toElement.parentNode.insertBefore(fromElement, toElement.nextSibling);
+            } else {
+                toElement.parentNode.insertBefore(fromElement, toElement);
+            }
+        }
+    }
+    
+    function finishDrag() {
+        if (draggedElement) {
+            draggedElement.classList.remove('dragging');
+            draggedElement.style.position = '';
+            draggedElement.style.zIndex = '';
+            draggedElement.style.width = '';
+            draggedElement.style.left = '';
+            draggedElement.style.top = '';
+            draggedElement.style.pointerEvents = '';
+            
+            // Update section numbers if needed
+            updateSectionNumbers();
+            
+            draggedElement = null;
+            draggedIndex = null;
+            originalIndex = null;
+        }
+        
+        // Remove event listeners
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener('touchmove', handleTouchMove);
+        document.removeEventListener('touchend', handleTouchEnd);
+    }
+    
+    function updateSectionNumbers() {
+        const sections = document.querySelectorAll('.toc-section');
+        sections.forEach((section, index) => {
+            const numberElement = section.querySelector('.section-number');
+            if (numberElement) {
+                numberElement.textContent = String(index + 1).padStart(2, '0');
+            }
         });
-        
-        itemElement.addEventListener('click', () => handleCircularItemClick(index));
-        container.appendChild(itemElement);
-    });
-}
-
-// Handle Circular Item Click
-function handleCircularItemClick(index) {
-    const items = document.querySelectorAll('.circular-item');
-    const centralContent = document.querySelector('.central-content');
-    const container = document.querySelector('.circular-items-container');
-    
-    // Remove active class from all items
-    items.forEach(item => item.classList.remove('active'));
-    
-    // Add active class to clicked item
-    items[index].classList.add('active');
-    
-    // Update central display
-    const selectedItem = circularTocData[index];
-    centralContent.innerHTML = `
-        <div class="circular-item-number" style="color: #005A9C; margin-bottom: 8px; font-size: 2rem;">${selectedItem.number}</div>
-        <div class="circular-item-title" style="color: #005A9C; margin-bottom: 12px; font-size: 1.2rem;">${selectedItem.title}</div>
-        <ul style="text-align: left; font-size: 0.9rem; color: #6b7280; line-height: 1.6;">
-            ${selectedItem.details.map(detail => `<li style="margin-bottom: 6px;">• ${detail}</li>`).join('')}
-        </ul>
-    `;
-    
-    // Rotate container to bring clicked item to top
-    const rotation = -index * 60; // 60 degrees per item
-    container.style.transform = `rotate(${rotation}deg)`;
-    
-    // Counter-rotate each item's text elements individually to keep them readable
-    items.forEach((item, itemIndex) => {
-        const textElements = item.querySelectorAll('.circular-item-number, .circular-item-title');
-        const itemAngle = (itemIndex * 60) * (Math.PI / 180); // Current angle of this item
-        const counterRotation = -rotation - (itemAngle * 180 / Math.PI); // Counter-rotate to keep text upright
-        textElements.forEach(textElement => {
-            textElement.style.transform = `rotate(${counterRotation}deg)`;
-        });
-    });
+    }
 }
 
 // Initialize when DOM is loaded
@@ -262,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentLang = currentLang === 'ja' ? 'en' : 'ja';
         renderContent();
     });
-    initCircularToc();
+    initVerticalToc();
 });
 
 // Function to render all dynamic content based on the current language
